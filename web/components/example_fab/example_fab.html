@@ -1,0 +1,11 @@
+<input [(ngModel)]="icon" placeholder="Icon Name" type="text">
+<br>
+<input [(ngModel)]="mini" type="checkbox"> Mini
+<br>
+<input [(ngModel)]="plain" type="checkbox"> Plain
+<br>
+<input [(ngModel)]="bottom_right" type="checkbox"> Pinned to bottom right
+<br>
+<mdc-fab [class.fixed]="bottom_right" [mini]="mini" [plain]="plain">
+    <mdc-icon [icon]="icon"></mdc-icon>
+</mdc-fab>

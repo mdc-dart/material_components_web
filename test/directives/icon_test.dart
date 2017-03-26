@@ -4,7 +4,7 @@ import 'dart:html';
 
 import 'package:angular_test/angular_test.dart';
 import 'package:angular2/angular2.dart';
-import 'package:angular2_mdc/src/directives/icon/icon.dart';
+import 'package:ngx_mdc/src/directives/icon/icon.dart';
 import 'package:test/test.dart';
 
 @AngularEntrypoint()
