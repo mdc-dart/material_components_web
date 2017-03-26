@@ -1,0 +1,8 @@
+language: dart
+env:
+  - TEST_PLATFORM=vm
+  - TEST_PLATFORM=content-shell
+  - TEST_PLATFORM=firefox
+with_content_shell: true
+addons:
+  firefox: "latest"
