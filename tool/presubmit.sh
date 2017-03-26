@@ -5,6 +5,7 @@ set -e
 
 # Run any simple tests that just require the use of the VM
 pub run test -p vm -x aot
+pub run angular_test
 
 # Run e2e-like tests that use Angular AoT compilation
 #if [ "$TRAVIS" = "true" ]
