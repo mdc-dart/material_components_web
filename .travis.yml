@@ -1,7 +1,9 @@
 language: dart
-sudo: false
+# sudo: false
 with_content_shell: true
 cache:
   directories:
     - $HOME/.pub-cache
 script: ./tool/presubmit.sh
+before_script:
+  - chmod +x ./tool/presubmit.sh
