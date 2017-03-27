@@ -1,11 +1,19 @@
-<h1>Dart MDC Examples</h1>
-<ul>
-    <li>
-        <a [routerLink]="['Fab']">mdc-fab</a>
-    </li>
-    <li>
-        <a>mdc-icon</a>
-    </li>
-</ul>
-<br>
-<router-outlet></router-outlet>
+<mdc-toolbar [fixed]="true">
+    <mdc-toolbar-section [alignStart]="true">
+        <mdc-toolbar-title [title]="title"></mdc-toolbar-title>
+    </mdc-toolbar-section>
+</mdc-toolbar>
+<main class="mdc-toolbar-fixed-adjust">
+    <mdc-checkbox [(ngModel)]="wtf"></mdc-checkbox>
+    <input [(ngModel)]="wtf" type="checkbox">
+    <ul>
+        <li>
+            <a [routerLink]="['Fab']">mdc-fab</a>
+        </li>
+        <li>
+            <a>mdc-icon</a>
+        </li>
+    </ul>
+    <br>
+    <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,27 @@
+{
+  "name": "material-components-ng2-dart",
+  "version": "1.0.0",
+  "description": "[![version 0.7.0-dev](https://img.shields.io/badge/pub-0.7.0--dev-red.svg)](https://pub.dartlang.org/packages/angular2_mdc) [![build status](https://travis-ci.org/mdc-dart/material-components-ng2-dart.svg)](https://travis-ci.org/mdc-dart/material-components-ng2-dart)",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thosakwe/material-components-ng2-dart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thosakwe/material-components-ng2-dart/issues"
+  },
+  "homepage": "https://github.com/thosakwe/material-components-ng2-dart#readme",
+  "private": true,
+  "dependencies": {
+    "material-components-web": "^0.7.0"
+  }
+}
