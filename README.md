@@ -1,6 +1,6 @@
 # material-components-ng2-dart
 [![version 0.7.0-dev](https://img.shields.io/badge/pub-0.7.0--dev-red.svg)](https://pub.dartlang.org/packages/angular2_mdc)
-[![build status](https://travis-ci.org/mdc-dart/material-components-ng2-dart.svg)](https://travis-ci.org/mdc-dart/material-components-ng2-dart)
+[![build status](https://travis-ci.org/mdc-dart/ngx_mdc.svg)](https://travis-ci.org/mdc-dart/material-components-ng2-dart)
 
 Angular2 Dart bindings for the 
 [Material Design Components Library](https://github.com/material-components/material-components-web).
@@ -24,7 +24,7 @@ pub run angular_test
 * [ ] `mdc-animation`
 * [x] `mdc-auto-init`
 * [ ] `mdc-base`
-* [ ] `mdc-button`
+* [x] `mdc-button`
 * [ ] `mdc-card`
 * [ ] `mdc-checkbox`
 * [ ] `mdc-dialog`

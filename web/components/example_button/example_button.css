@@ -2,7 +2,7 @@
 fieldset {
     margin-bottom: 0.5rem;
 }
-fieldset .mdc-button {
+fieldset mdc-button {
     margin: 16px;
 }
 .mdc-theme--dark fieldset {

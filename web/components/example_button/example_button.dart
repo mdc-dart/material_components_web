@@ -6,4 +6,6 @@ import 'package:ngx_mdc/ngx_mdc.dart';
     templateUrl: 'example_button.html',
     styleUrls: const ['example_button.css'],
     directives: const [MDC_DIRECTIVES])
-class ButtonExampleComponent {}
+class ButtonExampleComponent {
+  String link = 'https://dartlang.org';
+}
