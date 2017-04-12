@@ -4,7 +4,8 @@
 
 Angular2 Dart bindings for the 
 [Material Design Components Library](https://github.com/material-components/material-components-web).
-All directves and services are unit-tested.
+
+All directves and services *will eventually be* unit-tested.
 
 # Installation
 In your `pubspec.yaml`:
@@ -21,15 +22,15 @@ pub run angular_test
 
 # Progress
 * [ ] `mdc-animation`
-* [ ] `mdc-auto-init`
+* [x] `mdc-auto-init`
 * [ ] `mdc-base`
 * [ ] `mdc-button`
 * [ ] `mdc-card`
 * [ ] `mdc-checkbox`
 * [ ] `mdc-dialog`
 * [ ] `mdc-drawer`
-* [ ] `mdc-elevation`
-* [ ] [`mdc-fab`](lib/src/directives/fab)
+* [x] `mdc-elevation`
+* [x] [`mdc-fab`](lib/src/directives/fab)
 * [ ] `mdc-form-field`
 * [ ] `mdc-grid-list`
 * [x] [`mdc-icon`](lib/src/directives/icon)
@@ -38,12 +39,12 @@ pub run angular_test
 * [ ] `mdc-list`
 * [ ] `mdc-menu`
 * [ ] `mdc-radio`
-* [ ] `mdc-ripple`
+* [x] `mdc-ripple`
 * [ ] `mdc-rtl`
 * [ ] `mdc-select`
 * [ ] `mdc-snackbar`
 * [ ] `mdc-switch`
 * [ ] `mdc-textfield`
 * [ ] `mdc-theme`
-* [ ] `mdc-toolbar`
+* [x] `mdc-toolbar`
 * [ ] `mdc-typography`

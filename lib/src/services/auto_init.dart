@@ -3,7 +3,5 @@ import '../mdc.dart' as mdc;
 
 @Injectable()
 class MdcAutoInitService {
-  MdcAutoInitService() {
-    mdc.autoInit();
-  }
+  void autoInit() => mdc.autoInit();
 }

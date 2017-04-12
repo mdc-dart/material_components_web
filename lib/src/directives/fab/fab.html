@@ -1,4 +1,4 @@
 <button [class.mdc-fab--mini]="mini" [class.mdc-fab--plain]="plain"
-  mdc-ripple class="mdc-fab material-icons" aria-label="Favorite">
-  <ng-content></ng-content> 
+        [disabled]="disabled" [mdc-elevation]="elevation" mdc-ripple class="mdc-fab material-icons">
+    <ng-content></ng-content>
 </button>

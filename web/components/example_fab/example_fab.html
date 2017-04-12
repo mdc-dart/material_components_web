@@ -1,3 +1,6 @@
+<mdc-fab id="demo-absolute-fab">
+    <mdc-icon icon="edit"></mdc-icon>
+</mdc-fab>
 <fieldset>
     <legend>Normal FABs</legend>
     <mdc-fab>
@@ -10,6 +13,21 @@
         <mdc-icon [icon]="icon"></mdc-icon>
     </mdc-fab>
     <mdc-fab [mini]="true" [plain]="true">
+        <mdc-icon [icon]="icon"></mdc-icon>
+    </mdc-fab>
+</fieldset>
+<fieldset>
+    <legend>Disabled FABs</legend>
+    <mdc-fab [disabled]="true">
+        <mdc-icon [icon]="icon"></mdc-icon>
+    </mdc-fab>
+    <mdc-fab [disabled]="true" [mini]="true">
+        <mdc-icon [icon]="icon"></mdc-icon>
+    </mdc-fab>
+    <mdc-fab [disabled]="true" [plain]="true">
+        <mdc-icon [icon]="icon"></mdc-icon>
+    </mdc-fab>
+    <mdc-fab [disabled]="true" [mini]="true" [plain]="true">
         <mdc-icon [icon]="icon"></mdc-icon>
     </mdc-fab>
 </fieldset>

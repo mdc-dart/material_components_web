@@ -1,10 +1,14 @@
 <mdc-toolbar [fixed]="true">
     <mdc-toolbar-section [alignStart]="true">
+        <mdc-icon icon="menu"></mdc-icon>
         <mdc-toolbar-title [title]="title"></mdc-toolbar-title>
     </mdc-toolbar-section>
 </mdc-toolbar>
 <main class="mdc-toolbar-fixed-adjust">
     <ul>
+        <li>
+            <a [routerLink]="['Button']">mdc-button</a>
+        </li>
         <li>
             <a [routerLink]="['Fab']">mdc-fab</a>
         </li>

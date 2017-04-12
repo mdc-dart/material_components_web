@@ -1,0 +1,21 @@
+<button *ngIf="href?.isNotEmpty != true" class="mdc-button"
+        [class.mdc-button--accent]="accent"
+        [class.mdc-button--compact]="compact"
+        [class.mdc-button--dense]="dense"
+        [class.mdc-button--primary]="primary"
+        [class.mdc-button--raised]="raised"
+        [disabled]="disabled"
+        [mdc-elevation]="elevation" mdc-ripple>
+    <ng-content></ng-content>
+</button>
+<a *ngIf="href?.isNotEmpty == true" class="mdc-button"
+        [class.mdc-button--accent]="accent"
+        [class.mdc-button--compact]="compact"
+        [class.mdc-button--dense]="dense"
+        [class.mdc-button--primary]="primary"
+        [class.mdc-button--raised]="raised"
+        [attr.disabled]="disabled"
+        [mdc-elevation]="elevation"
+        [href]="href" mdc-ripple>
+    <ng-content></ng-content>
+</a>
