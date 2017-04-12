@@ -7,15 +7,18 @@ publish_to: none
 environment:
   sdk: '>=1.22.0 <2.0.0'
 dependencies:
-  angular2: ">=2.0.0-alpha <4.0.0"
+  angular2: '>=3.0.0-alpha+1 <4.0.0'
   js: ^0.6.0
+  quiver: '>=0.22.0 <0.25.0'
 dev_dependencies:
-  angular_test: '^1.0.0-beta'
+  angular_test: ^1.0.0-beta
   browser: ^0.10.0
   # build: ^0.7.0
   # build_runner: ^0.3.0
   # sass_builder: ^0.0.2
   test: ^0.12.6
+dependency_overrides:
+  quiver:
 transformers:
   # - angular2/transform/codegen
   - angular2/transform/reflection_remover:
