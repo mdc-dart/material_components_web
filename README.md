@@ -29,7 +29,7 @@ pub run angular_test
 * [ ] `mdc-dialog`
 * [ ] `mdc-drawer`
 * [ ] `mdc-elevation`
-* [x] [`mdc-fab`](lib/src/directives/fab)
+* [ ] [`mdc-fab`](lib/src/directives/fab)
 * [ ] `mdc-form-field`
 * [ ] `mdc-grid-list`
 * [x] [`mdc-icon`](lib/src/directives/icon)

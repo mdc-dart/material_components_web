@@ -11,6 +11,5 @@ import '../example_fab/example_fab.dart';
   const Route(path: '/fab', name: 'Fab', component: FabExampleComponent)
 ])
 class ExampleAppComponent {
-  bool wtf;
   String title = 'Dart MDC Examples';
 }

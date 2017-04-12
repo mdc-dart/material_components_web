@@ -7,6 +7,5 @@ import 'package:ngx_mdc/ngx_mdc.dart';
     styleUrls: const ['example_fab.css'],
     directives: const [MDC_DIRECTIVES])
 class FabExampleComponent {
-  String icon = 'add';
-  bool mini, plain, bottom_right = true;
+  String icon = 'favorite_border';
 }
