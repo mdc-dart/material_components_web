@@ -15,36 +15,29 @@ dependencies:
   ngx_mdc: ^0.7.0
 ```
 
+# Examples
+To view the examples, run:
+
+```bash
+pub serve
+```
+
+And then visit `http://localhost:8080` in your browser.
+
+If you are not using Dartium, then instead consider
+pre-building the site:
+
+```bash
+pub build
+```
+
+Then, you can run a static server out of `build/web`.
+
 # Testing
 ```bash
 pub run angular_test
 ```
 
 # Progress
-* [ ] `mdc-animation`
-* [x] `mdc-auto-init`
-* [ ] `mdc-base`
-* [x] `mdc-button`
-* [ ] `mdc-card`
-* [ ] `mdc-checkbox`
-* [ ] `mdc-dialog`
-* [ ] `mdc-drawer`
-* [x] `mdc-elevation`
-* [x] [`mdc-fab`](lib/src/directives/fab)
-* [ ] `mdc-form-field`
-* [ ] `mdc-grid-list`
-* [x] [`mdc-icon`](lib/src/directives/icon)
-* [ ] `mdc-icon-toggle`
-* [ ] `mdc-layout-grid`
-* [ ] `mdc-list`
-* [ ] `mdc-menu`
-* [ ] `mdc-radio`
-* [x] `mdc-ripple`
-* [ ] `mdc-rtl`
-* [ ] `mdc-select`
-* [ ] `mdc-snackbar`
-* [ ] `mdc-switch`
-* [ ] `mdc-textfield`
-* [ ] `mdc-theme`
-* [x] `mdc-toolbar`
-* [ ] `mdc-typography`
+Track progress
+[here](https://github.com/mdc-dart/ngx_mdc/issues/3).

@@ -6,6 +6,8 @@ import '../../mdc.dart';
 @Directive(selector: '[mdc-ripple]')
 class MdcRippleDirective implements OnInit {
   final ElementRef _elementRef;
+  // static final Duration _fadeDuration = new Duration(milliseconds: 250);
+
   MDCRipple _ripple;
   Element _surface;
   bool _accent = false, _primary = false, _unbounded = false;
@@ -71,6 +73,7 @@ class MdcRippleDirective implements OnInit {
   @HostListener('mouseup')
   void handleMouseUp() {
     _initRipple().deactivate();
+    $surface.blur();
   }
 
   @override

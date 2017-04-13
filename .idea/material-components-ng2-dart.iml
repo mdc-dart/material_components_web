@@ -12,6 +12,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/example_app/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/example_button/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/example_fab/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />

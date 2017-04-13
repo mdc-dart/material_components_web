@@ -31,7 +31,19 @@
 </head>
 
 <body>
-    <example-app></example-app>
+    <example-app>
+        <header class="mdc-toolbar mdc-toolbar--fixed">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <a class="material-icons" style="margin-right: 8px">menu</a>
+                    <span class="mdc-toolbar__title">Dart MDC Examples</span>
+                </section>
+            </div>
+        </header>
+        <main class="mdc-toolbar-fixed-adjust">
+            Loading...
+        </main>
+    </example-app>
     <script src="packages/ngx_mdc/material-components-web.min.js"></script>
     <script defer src="main.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js" type="text/javascript"></script>
