@@ -1,0 +1,7 @@
+{
+  "name": "material_components_web",
+  "version": "0.0.1",
+  "dependencies": {
+    "material-components-web": "^0.17.0"
+  }
+}

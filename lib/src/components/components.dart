@@ -15,8 +15,9 @@ export 'icon_toggle/icon_toggle.dart';
 export 'ripple/ripple.dart';
 export 'toolbar/toolbar.dart';
 
-const List MDC_DIRECTIVES = const [
-  MDC_TOOLBAR_DIRECTIVES,
+
+const List mdcDirectives = const [
+  mdcToolbarDirectives,
   MdcButtonComponent,
   MdcCheckboxComponent,
   MdcElevationDirective,

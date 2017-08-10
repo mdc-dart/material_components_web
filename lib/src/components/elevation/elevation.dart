@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 
 @Directive(selector: '[mdc-elevation]')
 class MdcElevationDirective implements OnInit {
@@ -31,8 +31,9 @@ class MdcElevationDirective implements OnInit {
       if (value != null && value > 0)
         $surface.classes.add('mdc-elevation--z${_elevation = value}');
       else
-        $surface.classes.removeAll(
-            ['mdc-elevation-transition', 'mdc-elevation--z$_elevation']);
+        $surface.classes
+          ..remove('mdc-elevation-transition')
+          ..remove('mdc-elevation--z$_elevation');
     }
   }
 

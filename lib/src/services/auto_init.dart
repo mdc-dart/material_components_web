@@ -1,5 +1,5 @@
-import 'package:angular2/angular2.dart';
-import '../mdc.dart' as mdc;
+import 'package:angular/angular.dart';
+import '../../mdc.dart' as mdc;
 
 @Injectable()
 class MdcAutoInitService {

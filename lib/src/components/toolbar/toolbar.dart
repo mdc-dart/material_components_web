@@ -1,6 +1,6 @@
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 
-const List<Type> MDC_TOOLBAR_DIRECTIVES = const [
+const List<Type> mdcToolbarDirectives = const [
   MdcToolbarComponent,
   MdcToolbarSectionComponent,
   MdcToolbarTitleComponent

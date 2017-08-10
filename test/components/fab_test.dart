@@ -1,10 +1,11 @@
 @Tags(const ['aot'])
 @TestOn('browser')
+// ignore: unused_import
 import 'dart:html';
 
 import 'package:angular_test/angular_test.dart';
-import 'package:angular2/angular2.dart';
-import 'package:ngx_mdc/src/directives/fab/fab.dart';
+import 'package:angular/angular.dart';
+import 'package:material_components_web/material_components_web.dart';
 import 'package:test/test.dart';
 
 @AngularEntrypoint()

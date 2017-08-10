@@ -1,11 +1,11 @@
-import 'package:angular2/angular2.dart';
-import 'package:ngx_mdc/ngx_mdc.dart';
+import 'package:angular/angular.dart';
+import 'package:material_components_web/material_components_web.dart';
 
 @Component(
     selector: 'icon-toggle-example',
     templateUrl: 'example_icon_toggle.html',
     styleUrls: const ['example_icon_toggle.css'],
-    directives: const [MDC_DIRECTIVES])
+    directives: const [mdcDirectives])
 class IconToggleExampleComponent {
   bool favorited = false;
   String onIcon = 'favorite',

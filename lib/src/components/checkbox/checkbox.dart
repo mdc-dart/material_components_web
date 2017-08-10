@@ -1,25 +1,28 @@
 import 'dart:async';
-import 'package:angular2/angular2.dart';
-import 'package:angular2/src/common/forms/directives/control_value_accessor.dart';
+import 'package:angular/angular.dart';
 
-const Provider MDC_CHECKBOX_TOGGLE_VALUE_ACCESSOR = const Provider(
+const Provider mdcCheckBoxValueAccessor = const Provider(
     NG_VALUE_ACCESSOR,
-    useExisting: MdcCheckboxToggleComponent,
+    useExisting: MdcCheckboxComponent,
     multi: true);
 
-@Component(selector: 'mdc-checkbox', templateUrl: 'checkbox.html',
-    // directives: const [MdcRippleDirective],
-    providers: const [MDC_CHECKBOX_TOGGLE_VALUE_ACCESSOR])
-class MdcCheckboxToggleComponent
-    implements ControlValueAccessor<bool>, OnDestroy {
+@Component(
+    selector: 'mdc-checkbox',
+    templateUrl: 'checkbox.html',
+    providers: const [mdcCheckBoxValueAccessor],
+    directives: const [COMMON_DIRECTIVES])
+class MdcCheckboxComponent
+    implements ControlValueAccessor<bool>, OnInit, OnDestroy {
   bool _disabled = false, _checked = false;
-  final StreamController _onTouched = new StreamController();
+  StreamController _onTouched;
+
+  StreamController<bool> _onChange;
 
   @Input()
   bool accent, primary;
 
   @Output()
-  final EventEmitter<bool> onChange = new EventEmitter<bool>();
+  Stream<bool> get onChange => _onChange.stream;
 
   bool get disabled => _disabled;
 
@@ -32,7 +35,7 @@ class MdcCheckboxToggleComponent
 
   @Input()
   void set checked(bool value) {
-    onChange.add(_checked = value == true);
+    _onChange.add(_checked = value == true);
   }
 
   @HostListener('click')
@@ -42,9 +45,15 @@ class MdcCheckboxToggleComponent
   }
 
   @override
+  ngOnInit() {
+    _onTouched = new StreamController();
+    _onChange = new StreamController<bool>();
+  }
+
+  @override
   ngOnDestroy() {
     _onTouched.close();
-    onChange.close();
+    _onChange.close();
   }
 
   @override

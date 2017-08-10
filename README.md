@@ -1,25 +1,25 @@
-# material-components-ng2-dart
-[![version 0.7.0-dev](https://img.shields.io/badge/pub-0.7.0--dev-red.svg)](https://pub.dartlang.org/packages/angular2_mdc)
-[![build status](https://travis-ci.org/mdc-dart/ngx_mdc.svg)](https://travis-ci.org/mdc-dart/material-components-ng2-dart)
+# material_components_web
+[![Pub](https://img.shields.io/pub/v/material_components_web.svg)](https://pub.dartlang.org/packages/angular2_mdc)
+[![build status](https://travis-ci.org/mdc-dart/material_components_web.svg)](https://travis-ci.org/mdc-dart/material_components_web)
 
-Angular2 Dart bindings for the 
-[Material Design Components Library](https://github.com/material-components/material-components-web).
+Angular2Dart components for Google's [Material Design Components Library](https://github.com/material-components/material-components-web).
 
-All directves and services *will eventually be* unit-tested.
+All components/services *will eventually be* unit-tested.
 
 # Installation
 In your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  ngx_mdc: ^0.7.0
+  material_components_web:
+    git: https://github.com/mdc-dart/material_components_web.git
 ```
 
 # Examples
 To view the examples, run:
 
 ```bash
-pub serve
+pub serve --web-compiler=dartdevc
 ```
 
 And then visit `http://localhost:8080` in your browser.
@@ -40,4 +40,7 @@ pub run angular_test
 
 # Progress
 Track progress
-[here](https://github.com/mdc-dart/ngx_mdc/issues/3).
+[here](https://github.com/mdc-dart/material_components_web/issue),
+using the issue tracker.
+
+PR's are always welcome!

@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'dart:html';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 import '../elevation/elevation.dart';
 import '../ripple/ripple.dart';
 
@@ -29,8 +30,10 @@ import '../ripple/ripple.dart';
     selector: 'mdc-fab',
     templateUrl: 'fab.html',
     directives: const [MdcElevationDirective, MdcRippleDirective])
-class MdcFabComponent {
+class MdcFabComponent implements OnInit, OnDestroy {
   bool _disabled = false;
+
+  StreamController<Event> _click;
 
   @Input()
   int elevation = 0;
@@ -39,7 +42,7 @@ class MdcFabComponent {
   bool mini = false, plain = false, ripple = true;
 
   @Output()
-  final EventEmitter<Event> click = new EventEmitter<Event>();
+  Stream<Event> get click => _click.stream;
 
   bool get disabled => _disabled == true;
 
@@ -48,9 +51,21 @@ class MdcFabComponent {
     _disabled = value == true;
   }
 
+  @override
+  ngOnInit() {
+    _click = new StreamController<Event>();
+  }
+
+  @override
+  ngOnDestroy() {
+    _click.close();
+  }
+
   @HostListener('click', const [r'$event'])
   void handleClick(Event e) {
-    if (disabled) e.preventDefault();
-    else click.add(e);
+    if (disabled)
+      e.preventDefault();
+    else
+      _click.add(e);
   }
 }

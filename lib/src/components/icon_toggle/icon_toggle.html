@@ -5,7 +5,8 @@
    [attr.aria-disabled]="disabled"
    [attr.aria-pressed]="on"
    [attr.aria-label]="label"
-   mdc-ripple
+   [attr.data-toggle-on]="computeToggle(onIcon, onLabel)"
+   [attr.data-toggle-off]="computeToggle(offIcon, offLabel)"
    tabindex="-1">
     {{icon}}
 </i>

@@ -1,13 +1,20 @@
+import 'dart:async';
 import 'dart:html';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 import '../elevation/elevation.dart';
 import '../ripple/ripple.dart';
 
 @Component(
     selector: 'mdc-button',
     templateUrl: 'button.html',
-    directives: const [MdcElevationDirective, MdcRippleDirective])
-class MdcButtonComponent {
+    directives: const [
+      COMMON_DIRECTIVES,
+      MdcElevationDirective,
+      MdcRippleDirective
+    ])
+class MdcButtonComponent implements OnInit, OnDestroy {
+  StreamController<Event> _click;
+
   @Input()
   bool accent = false,
       compact = false,
@@ -23,13 +30,23 @@ class MdcButtonComponent {
   String href;
 
   @Output()
-  final EventEmitter<Event> click = new EventEmitter<Event>();
+  Stream<Event> get click => _click.stream;
+
+  @override
+  ngOnInit() {
+    _click = new StreamController<Event>();
+  }
+
+  @override
+  ngOnDestroy() {
+    _click.close();
+  }
 
   @HostListener('click', const [r'$event'])
   void handleClick(Event e) {
     if (disabled == true) {
       e.preventDefault();
     } else
-      click.add(e);
+      _click.add(e);
   }
 }

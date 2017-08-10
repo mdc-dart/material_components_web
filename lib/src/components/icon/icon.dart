@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:angular2/angular2.dart';
+import 'package:angular/angular.dart';
 
 /// Creates an icon, namely a Material Design icon.
 ///
@@ -21,6 +21,10 @@ class MdcIconComponent {
   /// this corresponds to a font ligature.
   @Input()
   String icon;
+
+  /// Set to `true` if placing this icon in a toolbar. This will add the `mdc-toolbar__icon--menu` class.
+  @Input()
+  bool menuIcon;
 
   MdcIconComponent(this._elementRef);
 

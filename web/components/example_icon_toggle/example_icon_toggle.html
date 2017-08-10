@@ -1,6 +1,6 @@
 <section>
     <h2>Using material-icons</h2>
-    <mdc-icon-toggle [(ngModel)]="favorited" [onIcon]="onIcon" [offIcon]="offIcon"
+    <mdc-icon-toggle [(on)]="favorited" [onIcon]="onIcon" [offIcon]="offIcon"
                      [onLabel]="onLabel"
                      [offLabel]="offLabel"></mdc-icon-toggle>
     <p>Favorited? <span>{{favoritedStatus}}</span></p>
@@ -13,7 +13,7 @@
 </section>
 <section>
     <h2>Primary Colored Icons</h2>
-    <mdc-icon-toggle [primary]="true" [onIcon]="onIcon" [offIcon]="offIcon"
+    <mdc-icon-toggle [(on)]="favorited" [primary]="true" [onIcon]="onIcon" [offIcon]="offIcon"
                      [onLabel]="onLabel"
                      [offLabel]="offLabel"></mdc-icon-toggle>
 </section>

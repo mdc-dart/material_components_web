@@ -1,37 +1,29 @@
-name: ngx_mdc
-version: 0.7.0-dev
+name: material_components_web
+version: 0.0.0
 author: Tobe O <thosakwe@gmail.com>
 description: Angular2 Dart bindings for the Material Design Components Library.
 homepage: https://github.com/thosakwe/material-components-ng2-dart
 publish_to: none
 environment:
-  sdk: '>=1.22.0 <2.0.0'
+  sdk: '>=1.24.0'
 dependencies:
-  angular2: '>=3.0.0-alpha+1 <4.0.0'
-  func: ^0.1.1
+  angular: ^4.0.0-alpha
+  func: ^1.0.0
   js: ^0.6.0
-  quiver: '>=0.22.0 <0.25.0'
+  quiver: '>=0.22.0'
 dev_dependencies:
+  angular_router: ^1.0.0
   angular_test: ^1.0.0-beta
   browser: ^0.10.0
-  # build: ^0.7.0
   build_runner: ^0.3.0
-  sass_builder: ^0.0.2
-  test: ^0.12.6
-dependency_overrides:
-  quiver:
+  dart_to_js_script_rewriter: ^1.0.0
+  # sass_builder: ^0.0.2
+  test: ^0.12.0
+dev_transformers:
+  - dart_to_js_script_rewriter
 transformers:
-  # - angular2/transform/codegen
-  - angular2/transform/reflection_remover:
-      $include:
-          - test/directives/fab_test.dart
-          - test/directives/icon_test.dart
-  - angular2:
-      platform_directives:
-        - 'package:angular2/common.dart#COMMON_DIRECTIVES'
-      platform_pipes:
-        - 'package:angular2/common.dart#COMMON_PIPES'
+  - angular:
       entry_points: web/main.dart
   - test/pub_serve:
       $include:
-        - test/directives/**_test.dart
+        - test/components/**_test.dart
