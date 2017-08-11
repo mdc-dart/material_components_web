@@ -120,7 +120,7 @@ class MdcIconToggleComponent
   MDCIconToggle _init() {
     Element $el = _elementRef.nativeElement;
     var $i = $el.querySelector('i');
-    var t = MDCIconToggle.attachTo($i);
+    var t = new MDCIconToggle($i);
     _sub = $i.on['MDCIconToggle:change'].listen(_handleEvent);
     return t;
   }

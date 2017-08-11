@@ -1,0 +1,56 @@
+<input [(ngModel)]="bordered" type="checkbox">
+Toggle Bordered List
+<input [(ngModel)]="avatar" type="checkbox">
+Toggle Avatar Display (best for images)
+<br>
+
+<div class="mdc-list-group">
+    <mdc-list [avatar]="avatar" [bordered]="bordered" label="One-Line">
+        <mdc-list-item>
+            <div class="mdc-list-item__text">
+                Foo
+            </div>
+            <mdc-list-item-detail icon="airplane_mode" end></mdc-list-item-detail>
+        </mdc-list-item>
+        <mdc-list-item>
+            Bar
+        </mdc-list-item>
+        <mdc-list-item>
+            <mdc-list-item-detail icon="person"></mdc-list-item-detail>
+            Baz
+        </mdc-list-item>
+    </mdc-list>
+    <mdc-list-divider></mdc-list-divider>
+    <mdc-list [avatar]="avatar" [bordered]="bordered" label="Two-Line" twoLine>
+        <mdc-list-item>
+            <mdc-list-item-detail icon="network_wifi"></mdc-list-item-detail>
+            <span class="mdc-list-item__text">
+            Wi-fi
+            <span class="mdc-list-item__text__secondary">
+                Secondary Text
+            </span>
+        </span>
+            <mdc-list-item-detail icon="favorite" end></mdc-list-item-detail>
+        </mdc-list-item>
+        <mdc-list-item>
+            <mdc-list-item-detail icon="folder"></mdc-list-item-detail>
+            <span class="mdc-list-item__text">
+            My Documents
+            <span class="mdc-list-item__text__secondary">
+                Last opened yesterday
+            </span>
+        </span>
+            <mdc-list-item-detail icon="info" end></mdc-list-item-detail>
+        </mdc-list-item>
+        <mdc-list-item href="https://github.com/thosakwe">
+            <mdc-list-item-detail
+                    image="https://avatars0.githubusercontent.com/u/9996860?v=4&s=460"></mdc-list-item-detail>
+            <span class="mdc-list-item__text">
+            Tobe O (link)
+            <span class="mdc-list-item__text__secondary">
+                Maintains the library
+            </span>
+        </span>
+        </mdc-list-item>
+    </mdc-list>
+</div>

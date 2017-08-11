@@ -14,7 +14,7 @@ abstract class MDCDialog {
   external factory MDCDialog(Element surface);
 
   @JS()
-  external static MDCDialog attachTo(Element surface);
+  external static void attachTo(Element surface);
 
   @JS()
   external bool get open;
@@ -45,6 +45,41 @@ abstract class MDCDialogUtil {
 @JS('dialog.util')
 external MDCDialogUtil get mdcDialogUtil;
 
+abstract class MDCDynamicDrawer {
+  bool get open;
+  void set open(bool value);
+}
+
+@JS('drawer.MDCTemporaryDrawer')
+abstract class MDCTemporaryDrawer implements MDCDynamicDrawer {
+  @JS()
+  external factory MDCTemporaryDrawer(Element surface);
+
+  @JS()
+  external static void attachTo(Element surface);
+
+  @JS()
+  external bool get open;
+
+  @JS()
+  external void set open(bool value);
+}
+
+@JS('drawer.MDCPersistentDrawer')
+abstract class MDCPersistentDrawer implements MDCDynamicDrawer {
+  @JS()
+  external factory MDCPersistentDrawer(Element surface);
+
+  @JS()
+  external static void attachTo(Element surface);
+
+  @JS()
+  external bool get open;
+
+  @JS()
+  external void set open(bool value);
+}
+
 @JS('iconToggle.MDCIconToggle')
 abstract class MDCIconToggle {
   @JS()
@@ -66,7 +101,7 @@ abstract class MDCIconToggle {
   external void refreshToggleData();
 
   @JS()
-  external static MDCIconToggle attachTo(Element surface);
+  external static void attachTo(Element surface);
 }
 
 @JS('ripple.MDCRipple')
@@ -81,7 +116,7 @@ abstract class MDCRipple {
   external void set unbounded(bool value);
 
   @JS()
-  external static MDCRipple attachTo(Element surface);
+  external static void attachTo(Element surface);
 
   @JS()
   external void activate();

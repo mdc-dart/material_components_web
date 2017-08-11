@@ -1,0 +1,13 @@
+<aside #aside class="{{cssClass}} mdc-typography">
+    <nav class="{{cssClass}}__drawer">
+        <div *ngIf="toolbarSpacer == true" class="mdc-temporary-drawer__toolbar-spacer"></div>
+        <header *ngIf="showHeader != false" class="{{cssClass}}__header">
+            <div class="{{cssClass}}__header-content header-content">
+                <ng-content select="[header]"></ng-content>
+            </div>
+        </header>
+        <div class="{{cssClass}}__content">
+            <ng-content></ng-content>
+        </div>
+    </nav>
+</aside>
