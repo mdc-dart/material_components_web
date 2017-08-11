@@ -40,7 +40,7 @@ pub run angular_test
 
 # Progress
 Track progress
-[here](https://github.com/mdc-dart/material_components_web/issue),
+[here](https://github.com/mdc-dart/material_components_web/issues),
 using the issue tracker.
 
 PR's are always welcome!

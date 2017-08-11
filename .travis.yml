@@ -1,9 +1,14 @@
 language: dart
 # sudo: false
-with_content_shell: true
+# with_content_shell: true
 cache:
   directories:
     - $HOME/.pub-cache
 script: ./tool/presubmit.sh
 before_script:
   - chmod +x ./tool/presubmit.sh
+dart_task:
+  - test: --platform vm
+  - test: --platform firefox
+  - test: --platform dartium
+    install_dartium: true
