@@ -23,6 +23,7 @@ dev_transformers:
   - dart_to_js_script_rewriter
 transformers:
   - angular:
+      $exclude: web/node_modules/**/*.*
       entry_points: web/main.dart
   - test/pub_serve:
       $include:
