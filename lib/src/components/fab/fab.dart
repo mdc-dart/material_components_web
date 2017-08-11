@@ -30,13 +30,13 @@ import '../ripple/ripple.dart';
     selector: 'mdc-fab',
     templateUrl: 'fab.html',
     directives: const [MdcElevationDirective, MdcRippleDirective])
-class MdcFabComponent implements OnInit, OnDestroy {
+class MdcFabComponent implements OnDestroy {
   bool _disabled = false;
 
-  StreamController<Event> _click;
+  final StreamController<Event> _click = new StreamController<Event>();
 
   @Input()
-  int elevation = 0;
+  int elevation = 2;
 
   @Input()
   bool mini = false, plain = false, ripple = true;
@@ -49,11 +49,6 @@ class MdcFabComponent implements OnInit, OnDestroy {
   @Input()
   void set disabled(bool value) {
     _disabled = value == true;
-  }
-
-  @override
-  ngOnInit() {
-    _click = new StreamController<Event>();
   }
 
   @override

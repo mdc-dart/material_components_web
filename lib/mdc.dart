@@ -8,6 +8,43 @@ import 'package:js/js.dart';
 @JS()
 external void autoInit();
 
+@JS('dialog.MDCDialog')
+abstract class MDCDialog {
+  @JS()
+  external factory MDCDialog(Element surface);
+
+  @JS()
+  external static MDCDialog attachTo(Element surface);
+
+  @JS()
+  external bool get open;
+
+  @JS()
+  external void set open(bool value);
+
+  @JS()
+  external EventTarget get lastFocusedTarget;
+
+  @JS()
+  external void set lastFocusedTarget(EventTarget value);
+
+  @JS()
+  external void show();
+
+  @JS()
+  external void close();
+}
+
+@JS()
+abstract class MDCDialogUtil {
+  @JS()
+  external void createFocusTrapInstance(
+      Element surfaceEl, Element acceptButtonEl);
+}
+
+@JS('dialog.util')
+external MDCDialogUtil get mdcDialogUtil;
+
 @JS('iconToggle.MDCIconToggle')
 abstract class MDCIconToggle {
   @JS()

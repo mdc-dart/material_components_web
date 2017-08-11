@@ -4,16 +4,34 @@
         <div class="mdc-toolbar__title">{{title}}</div>
     </mdc-toolbar-section>
 </mdc-toolbar>
-<main class="mdc-toolbar-fixed-adjust">
-    <ul>
-        <li>
-            <a [routerLink]="['Button']">mdc-button</a>
+<main class="mdc-toolbar-fixed-adjust" style="padding: 1em;">
+    <div class="mdc-typography--subheading1">
+        COMPONENTS
+    </div>
+    <ul class="mdc-list">
+        <li [routerLink]="['Button']" class="mdc-list-item" mdc-ripple>
+            <i class="mdc-list-item__start-detail material-icons" aria-hidden="true">
+                control_point
+            </i>
+            Buttons
         </li>
-        <li>
-            <a [routerLink]="['Fab']">mdc-fab</a>
+        <li [routerLink]="['Dialog']" class="mdc-list-item" mdc-ripple>
+            <i class="mdc-list-item__start-detail material-icons" aria-hidden="true">
+                filter_frames
+            </i>
+            Dialogs
         </li>
-        <li>
-            <a [routerLink]="['IconToggle']">mdc-icon-toggle</a>
+        <li [routerLink]="['Fab']" class="mdc-list-item" mdc-ripple>
+            <i class="mdc-list-item__start-detail material-icons" aria-hidden="true">
+                control_point_duplicate
+            </i>
+            Floating Action Buttons
+        </li>
+        <li [routerLink]="['IconToggle']" class="mdc-list-item" mdc-ripple>
+            <i class="mdc-list-item__start-detail material-icons" aria-hidden="true">
+                radio_button_checked
+            </i>
+            Icon Toggles
         </li>
     </ul>
     <br>

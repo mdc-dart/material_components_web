@@ -12,8 +12,8 @@ import '../ripple/ripple.dart';
       MdcElevationDirective,
       MdcRippleDirective
     ])
-class MdcButtonComponent implements OnInit, OnDestroy {
-  StreamController<Event> _click;
+class MdcButtonComponent implements OnDestroy {
+  final StreamController<Event> _click = new StreamController<Event>();
 
   @Input()
   bool accent = false,
@@ -31,11 +31,6 @@ class MdcButtonComponent implements OnInit, OnDestroy {
 
   @Output()
   Stream<Event> get click => _click.stream;
-
-  @override
-  ngOnInit() {
-    _click = new StreamController<Event>();
-  }
 
   @override
   ngOnDestroy() {

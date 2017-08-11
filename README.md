@@ -35,7 +35,7 @@ Then, you can run a static server out of `build/web`.
 
 # Testing
 ```bash
-pub run angular_test
+pub run angular_test --verbose
 ```
 
 # Progress

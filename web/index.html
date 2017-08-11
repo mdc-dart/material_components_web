@@ -13,40 +13,67 @@
             font-family: Roboto, sans-serif;
             margin: 0;
         }
-        
-         :root {
-            --mdc-theme-primary: #0e4ead;
+
+        :root {
+            --mdc-theme-primary: #212121;
+            --mdc-theme-accent: #64dd17;
+            --mdc-theme-background: #fff;
+            --mdc-theme-text-primary-on-primary: white;
+            --mdc-theme-text-secondary-on-primary: rgba(255, 255, 255, 0.7);
+            --mdc-theme-text-hint-on-primary: rgba(255, 255, 255, 0.5);
+            --mdc-theme-text-disabled-on-primary: rgba(255, 255, 255, 0.5);
+            --mdc-theme-text-icon-on-primary: rgba(255, 255, 255, 0.5);
+            --mdc-theme-text-primary-on-accent: rgba(0, 0, 0, 0.87);
+            --mdc-theme-text-secondary-on-accent: rgba(0, 0, 0, 0.54);
+            --mdc-theme-text-hint-on-accent: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-disabled-on-accent: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-icon-on-accent: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-primary-on-background: rgba(0, 0, 0, 0.87);
+            --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, 0.54);
+            --mdc-theme-text-hint-on-background: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-disabled-on-background: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-icon-on-background: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-primary-on-light: rgba(0, 0, 0, 0.87);
+            --mdc-theme-text-secondary-on-light: rgba(0, 0, 0, 0.54);
+            --mdc-theme-text-hint-on-light: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-icon-on-light: rgba(0, 0, 0, 0.38);
+            --mdc-theme-text-primary-on-dark: white;
+            --mdc-theme-text-secondary-on-dark: rgba(255, 255, 255, 0.7);
+            --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
+            --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
+            --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
         }
-        
+
         .mdc-ripple-surface.mdc-ripple-upgraded.mdc-button--primary::before,
         .mdc-ripple-surface.mdc-ripple-upgraded.mdc-button--primary::after {
             background-color: rgba(255, 255, 255, .2);
         }
-        
-        #greeting-form>button {
+
+        #greeting-form > button {
             margin-top: 8px;
         }
     </style>
     <title>Dart MDC Examples</title>
 </head>
 
-<body>
-    <example-app>
-        <header class="mdc-toolbar mdc-toolbar--fixed">
-            <div class="mdc-toolbar__row">
-                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                    <a class="material-icons mdc-toolbar__icon--menu" style="margin-right: 8px">menu</a>
-                    <span class="mdc-toolbar__title">Dart MDC Examples</span>
-                </section>
-            </div>
-        </header>
-        <main class="mdc-toolbar-fixed-adjust">
-            Loading...
-        </main>
-    </example-app>
-    <script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
-    <script defer src="main.dart" type="application/dart"></script>
-    <script defer src="packages/browser/dart.js" type="text/javascript"></script>
+<body class="mdc-typography">
+<example-app>
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+        <div class="mdc-toolbar__row">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <a class="material-icons mdc-toolbar__icon--menu" style="margin-right: 8px">menu</a>
+                <span class="mdc-toolbar__title">Dart MDC Examples</span>
+            </section>
+        </div>
+    </header>
+    <main class="mdc-toolbar-fixed-adjust" style="padding: 1em;">
+        Loading...
+    </main>
+</example-app>
+<script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
+<script defer src="main.dart" type="application/dart"></script>
+<script defer src="packages/browser/dart.js" type="text/javascript"></script>
 </body>
 
 </html>
