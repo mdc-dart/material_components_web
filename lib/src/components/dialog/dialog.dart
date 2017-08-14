@@ -12,7 +12,7 @@ const List<Type> mdcDialogDirectives = const [
     selector: 'mdc-dialog',
     templateUrl: 'dialog.html',
     directives: const [COMMON_DIRECTIVES])
-class MdcDialogComponent implements OnInit, OnDestroy {
+class MdcDialogComponent implements AfterContentInit, OnDestroy {
   final ElementRef _elementRef;
   final NgZone _zone;
 
@@ -65,7 +65,7 @@ class MdcDialogComponent implements OnInit, OnDestroy {
   }
 
   @override
-  ngOnInit() {
+  ngAfterContentInit() {
     Element $el = _elementRef.nativeElement;
     var $surface = $el.querySelector('.mdc-dialog');
     _dialog = new MDCDialog($surface);

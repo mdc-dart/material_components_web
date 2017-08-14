@@ -26,6 +26,10 @@ const List<Type> mdcListDirectives = const [
     padding-left: 0;
     padding-right: 0;
 }
+
+.bordered /deep/ mdc-list-item:not(:first-child) .bordered {
+  border-top: none !important;
+}
   '''
     ])
 class MdcListComponent implements AfterContentInit, OnDestroy {
@@ -95,10 +99,6 @@ class MdcListComponent implements AfterContentInit, OnDestroy {
   .bordered {
     padding: 0 16px;
     border: 1px solid rgba(0, 0, 0, .12);
-  }
-
-  .bordered:not(:first-child) {
-    border-top: none;
   }
   '''
     ])

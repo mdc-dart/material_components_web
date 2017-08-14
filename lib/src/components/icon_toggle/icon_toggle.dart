@@ -4,28 +4,33 @@ import 'package:angular/angular.dart';
 import '../../../mdc.dart';
 import '../ripple/ripple.dart';
 
-const Provider mdcIconToggleValueAccessor = const Provider(NG_VALUE_ACCESSOR,
-    useExisting: MdcIconToggleComponent, multi: true);
-
 /// MDC Icon Toggle provides a Material Design icon toggle button. It is fully accessible, and is designed to work with any icon set.
 @Component(
     selector: 'mdc-icon-toggle',
     templateUrl: 'icon_toggle.html',
-    directives: const [MdcRippleDirective],
-    providers: const [mdcIconToggleValueAccessor])
+    directives: const [
+      MdcRippleDirective
+    ],
+    providers: const [
+      const Provider(
+        NG_VALUE_ACCESSOR,
+        useExisting: MdcIconToggleComponent,
+        multi: true,
+      )
+    ])
 class MdcIconToggleComponent
-    implements ControlValueAccessor<bool>, OnInit, OnDestroy {
+    implements ControlValueAccessor<bool>, AfterViewInit, OnDestroy {
   final ElementRef _elementRef;
-  final NgZone _zone;
 
+  ChangeFunction<bool> _changeListener;
   String _iconSet;
   bool _initialized = false, _disabled = false, _on = false;
   String _onIcon, _offIcon, _onLabel, _offLabel;
-  StreamController _onTouched = new StreamController();
   StreamSubscription<Event> _sub;
   MDCIconToggle _toggle;
+  TouchFunction _touchListener;
 
-  StreamController<bool> _onChange = new StreamController<bool>();
+  StreamController<bool> _onChange = new StreamController<bool>.broadcast();
 
   /// Style this component to feature the application's accent color.
   @Input()
@@ -35,7 +40,7 @@ class MdcIconToggleComponent
   @Input()
   bool primary;
 
-  MdcIconToggleComponent(this._elementRef, this._zone);
+  MdcIconToggleComponent(this._elementRef);
 
   /// The icon to be shown when the toggle is 'on'.
   String get onIcon => _onIcon;
@@ -105,22 +110,23 @@ class MdcIconToggleComponent
 
   @Input()
   void set on(bool value) {
-    _onTouched.add(null);
-    _onChange.add(_on = value == true);
-    _toggle?.on = value == true;
+    //_onChange.add(_on = value == true);
+    if (_toggle == null) {
+      _on = value == true;
+      if (_changeListener != null) _changeListener(_on);
+    } else _toggle.on = value == true;
   }
 
   void _handleEvent(CustomEvent e) {
-    _zone.run(() {
-      _onTouched.add(null);
-      _onChange.add(_on = e.detail['isOn']);
-    });
+    _onChange.add(_on = e.detail['isOn']);
+    if (_touchListener != null) _touchListener();
+    if (_changeListener != null) _changeListener(_on);
   }
 
   MDCIconToggle _init() {
     Element $el = _elementRef.nativeElement;
     var $i = $el.querySelector('i');
-    var t = new MDCIconToggle($i);
+    var t = new MDCIconToggle($i)..on = _on == true;
     _sub = $i.on['MDCIconToggle:change'].listen(_handleEvent);
     return t;
   }
@@ -133,14 +139,13 @@ class MdcIconToggleComponent
   }
 
   @override
-  ngOnInit() {
+  ngAfterViewInit() {
     _toggle = _init();
     _initialized = true;
   }
 
   @override
   ngOnDestroy() {
-    _onTouched.close();
     _onChange.close();
   }
 
@@ -158,12 +163,13 @@ class MdcIconToggleComponent
 
   @override
   void registerOnChange(ChangeFunction<bool> f) {
-    onChange.listen(f);
+    _changeListener = f;
+    _changeListener(_on ??= false);
   }
 
   @override
   void registerOnTouched(TouchFunction f) {
-    _onTouched.stream.listen((_) => f());
+    _touchListener = f;
   }
 
   @override

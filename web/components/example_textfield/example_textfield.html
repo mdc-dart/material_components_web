@@ -1,0 +1,19 @@
+<mdc-button primary raised>{{buttonText}}</mdc-button>
+<br>
+<mdc-textfield [(ngModel)]="buttonText" [hintText]="hintText"></mdc-textfield>
+<br>
+<mdc-textfield [(ngModel)]="buttonText" [hintText]="hintText" class="mdc-theme--dark"></mdc-textfield>
+<br>
+<mdc-textfield [(ngModel)]="hintText" hintText="Hint Text"></mdc-textfield>
+<br>
+<mdc-textfield hintText="Disabled Text Field" disabled></mdc-textfield>
+<br>
+<mdc-textfield helpText="Textfields can have optional help text." value="Click to view help text"></mdc-textfield>
+<br>
+<mdc-textfield [(ngModel)]="buttonText" hintText="Dense Text Field" dense></mdc-textfield>
+<br>
+<mdc-textfield hintText="Full-width Text Field" fullWidth></mdc-textfield>
+<br>
+<mdc-textfield [(ngModel)]="buttonText" [rows]="5" hintText="Multi-line Text Field" multiLine></mdc-textfield>
+<br>
+<mdc-textfield [rows]="5" hintText="Multi-line, Full-width Text Field" multiLine fullWidth></mdc-textfield>

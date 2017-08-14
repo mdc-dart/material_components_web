@@ -7,13 +7,16 @@
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/packages" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
-      <excludeFolder url="file://$MODULE_DIR$/test/directives/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/test/components/packages" />
       <excludeFolder url="file://$MODULE_DIR$/test/packages" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tool/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/example_app/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/example_button/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/example_dialog/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/example_fab/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/example_icon_toggle/packages" />
+      <excludeFolder url="file://$MODULE_DIR$/web/components/example_list/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/components/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />
     </content>

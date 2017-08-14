@@ -7,6 +7,42 @@ import 'package:js/js.dart';
 @JS()
 external void autoInit();
 
+@JS()
+abstract class MDCAnimationStatic {
+  @JS()
+  external String getCorrectName(Element element, String eventName);
+}
+
+@JS('checkbox.MDCCheckbox')
+abstract class MDCCheckbox {
+  @JS()
+  external factory MDCCheckbox(Element surface);
+  
+  @JS()
+  external bool get checked;
+  
+  @JS()
+  external void set checked(bool value);
+  
+  @JS()
+  external bool get disabled;
+  
+  @JS()
+  external void set disabled(bool value);
+  
+  @JS()
+  external bool get indeterminate;
+  
+  @JS()
+  external void set indeterminate(bool value);
+
+  @JS()
+  external String get value;
+
+  @JS()
+  external void set value(String v);
+}
+
 @JS('dialog.MDCDialog')
 abstract class MDCDialog {
   @JS()
@@ -122,4 +158,13 @@ abstract class MDCRipple {
 
   @JS()
   external void deactivate();
+}
+
+@JS('textfield.MDCTextfield')
+abstract class MDCTextfield {
+  @JS()
+  external factory MDCTextfield(Element surface);
+
+  @JS()
+  external static void attachTo(Element surface);
 }

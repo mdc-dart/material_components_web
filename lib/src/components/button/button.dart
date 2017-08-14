@@ -11,7 +11,19 @@ import '../ripple/ripple.dart';
       COMMON_DIRECTIVES,
       MdcElevationDirective,
       MdcRippleDirective
-    ])
+    ],
+styles: const [
+  '''
+  .mdc-button.flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .mdc-button.flex /deep/ * {
+    display: flex;
+  }
+  '''
+])
 class MdcButtonComponent implements OnDestroy {
   final StreamController<Event> _click = new StreamController<Event>();
 
@@ -25,6 +37,10 @@ class MdcButtonComponent implements OnDestroy {
 
   @Input()
   int elevation = 0;
+
+  /// Apply flexbox styling to this component.
+  @Input()
+  bool flex = false;
 
   @Input()
   String href;
