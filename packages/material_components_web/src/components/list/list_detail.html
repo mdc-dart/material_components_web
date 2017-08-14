@@ -1,0 +1,6 @@
+<i *ngIf="icon?.isNotEmpty == true" class="{{cssClass}} {{iconSet}}" aria-hidden="true">
+    {{icon}}
+</i>
+<img *ngIf="image?.isNotEmpty == true" [alt]="alt" [src]="image" [width]="width" [height]="height"
+     [class]="cssClass">
+<ng-content *ngIf="icon?.isNotEmpty != true && image?.isNotEmpty != true"></ng-content>

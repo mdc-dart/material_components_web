@@ -1,0 +1,12 @@
+<i class="mdc-icon-toggle {{iconSet}}" role="button"
+   [class.mdc-icon-toggle--accent]="accent"
+   [class.mdc-icon-toggle--disabled]="disabled"
+   [class.mdc-icon-toggle--primary]="primary"
+   [attr.aria-disabled]="disabled"
+   [attr.aria-pressed]="on"
+   [attr.aria-label]="label"
+   [attr.data-toggle-on]="computeToggle(onIcon, onLabel)"
+   [attr.data-toggle-off]="computeToggle(offIcon, offLabel)"
+   tabindex="-1">
+    {{icon}}
+</i>

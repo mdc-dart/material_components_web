@@ -1,0 +1,17 @@
+<div *ngIf="multiLine != true" #root [class.mdc-textfield--dense]="dense" [class.mdc-textfield--disabled]="disabled"
+     [class.mdc-textfield--fullwidth]="fullWidth" class="mdc-textfield">
+    <input #input [disabled]="disabled" [placeholder]="fullWidth == true ? hintText : null" type="text"
+           class="mdc-textfield__input">
+    <label *ngIf="fullWidth != true" class="mdc-textfield__label">{{hintText}}</label>
+</div>
+<p *ngIf="helpText?.isNotEmpty == true" [class.mdc-textfield-helptext--persistent]="persistentHelpText"
+   class="mdc-textfield-helptext">
+    {{helpText}}
+</p>
+<div *ngIf="multiLine == true" #textareaRoot [class.mdc-textfield--dense]="dense"
+     [class.mdc-textfield--disabled]="disabled" [class.mdc-textfield--fullwidth]="fullWidth"
+     class="mdc-textfield mdc-textfield--multiline">
+    <textarea #textarea [cols]="cols" [disabled]="disabled" [placeholder]="fullWidth == true ? hintText : null"
+              [rows]="rows" class="mdc-textfield__input"></textarea>
+    <label *ngIf="fullWidth != true" class="mdc-textfield__label">{{hintText}}</label>
+</div>

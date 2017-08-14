@@ -1,0 +1,36 @@
+<section>
+    <h2>Using material-icons</h2>
+    <mdc-icon-toggle [(ngModel)]="favorited" [onIcon]="onIcon" [offIcon]="offIcon"
+                     [onLabel]="onLabel"
+                     [offLabel]="offLabel"></mdc-icon-toggle>
+    <p>Favorited? <span>{{favoritedStatus}}</span></p>
+</section>
+<section class="mdc-theme--dark">
+    <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
+    <mdc-icon-toggle [onIcon]="onIcon" [offIcon]="offIcon"
+                     [onLabel]="onLabel"
+                     [offLabel]="offLabel"></mdc-icon-toggle>
+</section>
+<section>
+    <h2>Primary Colored Icons</h2>
+    <mdc-icon-toggle [(ngModel)]="favorited" [primary]="true" [onIcon]="onIcon" [offIcon]="offIcon"
+                     [onLabel]="onLabel"
+                     [offLabel]="offLabel"></mdc-icon-toggle>
+</section>
+<section>
+    <h2>Accent Colored Icons</h2>
+    <mdc-icon-toggle [accent]="true" [onIcon]="onIcon" [offIcon]="offIcon"
+                     [onLabel]="onLabel"
+                     [offLabel]="offLabel"></mdc-icon-toggle>
+</section>
+<section>
+    <h2>Disabled Icons</h2>
+    <mdc-icon-toggle [disabled]="true" [onIcon]="onIcon" [offIcon]="offIcon"
+                     [onLabel]="onLabel"
+                     [offLabel]="offLabel"></mdc-icon-toggle>
+    <div class="mdc-theme--dark">
+        <mdc-icon-toggle [disabled]="true" [onIcon]="onIcon" [offIcon]="offIcon"
+                         [onLabel]="onLabel"
+                         [offLabel]="offLabel"></mdc-icon-toggle>
+    </div>
+</section>

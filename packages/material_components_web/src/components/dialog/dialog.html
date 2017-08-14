@@ -1,0 +1,22 @@
+<aside class="mdc-dialog">
+    <div class="mdc-dialog__surface">
+        <header *ngIf="showHeader != false" class="mdc-dialog__header">
+            <ng-content select="[header], mdc-dialog-title"></ng-content>
+        </header>
+        <section [class.mdc-dialog__body-scrollable]="scrollable" class="mdc-dialog__body">
+            <ng-content></ng-content>
+        </section>
+        <footer *ngIf="showFooter != false && showDefaultFooter != true" class="mdc-dialog__footer">
+            <ng-content select="[footer]"></ng-content>
+        </footer>
+        <footer *ngIf="showFooter != false && showDefaultFooter == true" class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">
+                Cancel
+            </button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">
+                OK
+            </button>
+        </footer>
+    </div>
+    <div class="mdc-dialog__backdrop"></div>
+</aside>
