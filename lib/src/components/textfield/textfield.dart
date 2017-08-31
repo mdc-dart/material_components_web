@@ -1,6 +1,13 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart';
+import 'package:angular/angular.dart'
+    hide
+        NG_VALUE_ACCESSOR,
+        ChangeFunction,
+        ControlValueAccessor,
+        DefaultValueAccessor,
+        TouchFunction;
+import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 
 @Component(
@@ -53,16 +60,36 @@ class MdcTextfieldComponent
   @Input()
   String hintText;
 
+  /// Render this textfield as though it were invalid. Works well with validators.
+  @Input()
+  bool invalid;
+
   @ViewChild('input')
   ElementRef input;
+
+  /// The minimum length of text in this component.
+  @Input()
+  int minlength;
+
+  /// The maximum length of text in this component.
+  @Input()
+  int maxlength;
 
   /// If `true` (default: `false`), then the textfield will show as multi-line.
   @Input()
   bool multiLine = false;
 
+  /// A validation pattern to validate input against.
+  @Input()
+  String pattern;
+
   /// If `true`, (default: `false`), the [helpText] will not fade away on blur.
   @Input()
   bool persistentHelpText = false;
+
+  /// Whether the textfield is required.
+  @Input()
+  bool required = false;
 
   @ViewChild('root')
   ElementRef root;
@@ -77,12 +104,19 @@ class MdcTextfieldComponent
   @ViewChild('textareaRoot')
   ElementRef textareaRoot;
 
-  /// The text currently displayed within the text field.
-  String get value => _value;
+  /// The `type` attribute to be placed on the underlying `input` element.
+  @Input()
+  String type = 'text';
 
   /// Fires whenever a key is pressed within the input element.
   @Output('keypress')
   Stream<KeyboardEvent> get onKeyPress => _onKeyPress.stream;
+
+  /// Whether the textfield is valid.
+  bool get valid => (input ?? textarea)?.nativeElement?.validity?.valid == true;
+
+  /// The text currently displayed within the text field.
+  String get value => _value;
 
   /// Fires whenever the text within the textfield changes.
   @Output()
@@ -109,6 +143,10 @@ class MdcTextfieldComponent
     if (disabled == true) return;
     _valueChange.add(_value = e.target.value);
     if (_changeListener != null) _changeListener(_value);
+
+    if (!e.target.validity.valid) {
+      helpText ??= e.target.validationMessage;
+    }
   }
 
   @override
@@ -130,6 +168,10 @@ class MdcTextfieldComponent
 
     var $input = targetInput.nativeElement;
     $input.value = _value ??= '';
+
+    if (!$input.validity.valid) {
+      helpText ??= $input.validationMessage;
+    }
 
     _subBlur = $input.onBlur.listen((_) {
       if (_touchListener != null) _touchListener();

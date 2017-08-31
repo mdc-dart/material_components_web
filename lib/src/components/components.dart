@@ -9,6 +9,8 @@ import 'icon/icon.dart';
 import 'icon_toggle/icon_toggle.dart';
 import 'list/list.dart';
 import 'ripple/ripple.dart';
+import 'select/select.dart';
+import 'snackbar/snackbar.dart';
 import 'textfield/textfield.dart';
 import 'toolbar/toolbar.dart';
 export 'animation/animation.dart';
@@ -22,6 +24,8 @@ export 'icon/icon.dart';
 export 'icon_toggle/icon_toggle.dart';
 export 'list/list.dart';
 export 'ripple/ripple.dart';
+export 'select/select.dart';
+export 'snackbar/snackbar.dart';
 export 'textfield/textfield.dart';
 export 'toolbar/toolbar.dart';
 
@@ -38,5 +42,7 @@ const List mdcDirectives = const [
   MdcIconComponent,
   MdcIconToggleComponent,
   MdcRippleDirective,
+  MdcSelectComponent,
+  MdcSnackbarComponent,
   MdcTextfieldComponent
 ];

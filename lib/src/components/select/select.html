@@ -1,0 +1,10 @@
+<div [class.mdc-select--disabled]="disabled" class="mdc-select" role="listbox" tabindex="0">
+    <span class="mdc-select__selected-text">
+        {{defaultText}}
+    </span>
+    <div class="mdc-simple-menu mdc-select__menu">
+        <ul class="mdc-list mdc-simple-menu__items">
+            <ng-content></ng-content>
+        </ul>
+    </div>
+</div>

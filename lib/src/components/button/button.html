@@ -6,7 +6,9 @@
         [class.mdc-button--primary]="primary"
         [class.mdc-button--raised]="raised"
         [disabled]="disabled"
-        [mdc-elevation]="elevation" mdc-ripple>
+        [mdc-elevation]="elevation"
+        [type]="type"
+        mdc-ripple>
     <ng-content></ng-content>
 </button>
 <a *ngIf="href?.isNotEmpty == true" class="mdc-button"

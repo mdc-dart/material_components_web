@@ -8,6 +8,7 @@ environment:
   sdk: '>=1.24.0'
 dependencies:
   angular: ^4.0.0-alpha
+  angular_forms: ^0.1.0
   func: ^1.0.0
   js: ^0.6.0
   quiver: '>=0.22.0'

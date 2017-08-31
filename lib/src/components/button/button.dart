@@ -45,6 +45,10 @@ class MdcButtonComponent implements OnDestroy {
   @Input()
   String href;
 
+  /// The underlying `button`'s `type`.
+  @Input()
+  String type = 'button';
+
   @Output()
   Stream<Event> get click => _click.stream;
 

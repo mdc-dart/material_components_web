@@ -1,6 +1,13 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart';
+import 'package:angular/angular.dart'
+    hide
+    NG_VALUE_ACCESSOR,
+    ChangeFunction,
+    ControlValueAccessor,
+    DefaultValueAccessor,
+    TouchFunction;
+import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 import '../ripple/ripple.dart';
 

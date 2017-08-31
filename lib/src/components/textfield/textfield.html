@@ -1,17 +1,21 @@
 <div *ngIf="multiLine != true" #root [class.mdc-textfield--dense]="dense" [class.mdc-textfield--disabled]="disabled"
-     [class.mdc-textfield--fullwidth]="fullWidth" class="mdc-textfield">
-    <input #input [disabled]="disabled" [placeholder]="fullWidth == true ? hintText : null" type="text"
+     [class.mdc-textfield--fullwidth]="fullWidth" [class.mdc-textfield--invalid]="invalid" class="mdc-textfield">
+    <input #input [disabled]="disabled" [placeholder]="fullWidth == true ? hintText : null" [attr.maxlength]="maxlength"
+           [attr.minlength]="minlength" [attr.pattern]="pattern" [required]="required" [type]="type"
            class="mdc-textfield__input">
     <label *ngIf="fullWidth != true" class="mdc-textfield__label">{{hintText}}</label>
 </div>
-<p *ngIf="helpText?.isNotEmpty == true" [class.mdc-textfield-helptext--persistent]="persistentHelpText"
-   class="mdc-textfield-helptext">
+<p *ngIf="helpText?.isNotEmpty == true && textarea != true && invalid != true"
+   [class.mdc-textfield-helptext--persistent]="persistentHelpText"
+   class="mdc-textfield-helptext mdc-textfield-helptext--validation-msg">
     {{helpText}}
 </p>
 <div *ngIf="multiLine == true" #textareaRoot [class.mdc-textfield--dense]="dense"
      [class.mdc-textfield--disabled]="disabled" [class.mdc-textfield--fullwidth]="fullWidth"
+     [class.mdc-textfield--invalid]="invalid"
      class="mdc-textfield mdc-textfield--multiline">
-    <textarea #textarea [cols]="cols" [disabled]="disabled" [placeholder]="fullWidth == true ? hintText : null"
+    <textarea #textarea [cols]="cols" [disabled]="disabled" [attr.maxlength]="maxlength" [attr.minlength]="minlength"
+              [attr.pattern]="pattern" [required]="required" [placeholder]="fullWidth == true ? hintText : null"
               [rows]="rows" class="mdc-textfield__input"></textarea>
     <label *ngIf="fullWidth != true" class="mdc-textfield__label">{{hintText}}</label>
 </div>
