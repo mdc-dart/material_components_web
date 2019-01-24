@@ -1,31 +1,21 @@
 name: material_components_web
 version: 0.0.0
 author: Tobe O <thosakwe@gmail.com>
-description: Angular2 Dart bindings for the Material Design Components Library.
-homepage: https://github.com/thosakwe/material-components-ng2-dart
+description: AngularDart bindings for the Material Design Components Library.
+homepage: https://github.com/mdc-dart/material_components_web
 publish_to: none
 environment:
-  sdk: '>=1.24.0'
+  sdk: '>=2.0.0 <3.0.0'
 dependencies:
-  angular: ^4.0.0-alpha
-  angular_forms: ^0.1.0
-  func: ^1.0.0
+  angular: ^5.0.0
+  angular_forms: ^2.0.0
   js: ^0.6.0
-  quiver: '>=0.22.0'
+  mdc_web: ^0.4.0
+  quiver: ^2.0.0
 dev_dependencies:
-  angular_router: ^1.0.0
-  angular_test: ^1.0.0-beta
-  browser: ^0.10.0
-  build_runner: ^0.3.0
-  dart_to_js_script_rewriter: ^1.0.0
-  # sass_builder: ^0.0.2
-  test: ^0.12.0
-dev_transformers:
-  - dart_to_js_script_rewriter
-transformers:
-  - angular:
-      $exclude: web/node_modules/**/*.*
-      entry_points: web/main.dart
-  - test/pub_serve:
-      $include:
-        - test/components/**_test.dart
+  angular_router: ^2.0.0-alpha
+  angular_test: ^2.0.0
+  build_runner: ^1.0.0
+  build_web_compilers: ^1.0.0
+  pedantic: ^1.0.0
+  test: ^1.0.0

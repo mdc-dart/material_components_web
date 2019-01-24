@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import '../ripple/ripple.dart';
 
-const List<Type> mdcListDirectives = const [
+const List<Type> mdcListDirectives = [
   MdcListComponent,
   MdcListItemComponent,
   MdcListItemDetailComponent,
@@ -13,26 +13,30 @@ const List<Type> mdcListDirectives = const [
 ///
 /// MDC Lists are designed to be accessible and RTL aware.
 @Component(
-    selector: 'mdc-list',
-    directives: const [COMMON_DIRECTIVES],
-    template: '''
-<h3 *ngIf="label?.isNotEmpty == true" class="mdc-list-group__subheader">{{label}}</h3>
-<ul [class.bordered]="bordered" [class.mdc-list--avatar-list]="avatar" [class.mdc-list__dense]="dense" [class.mdc-list--two-line]="twoLine" class="mdc-list">
-  <ng-content></ng-content>
-</ul>''',
-    styles: const [
-      '''
-.bordered {
-    padding-left: 0;
-    padding-right: 0;
-}
+  selector: 'mdc-list',
+  directives: [coreDirectives],
+  template: '''
+    <h3 *ngIf="label?.isNotEmpty == true" class="mdc-list-group__subheader">{{label}}</h3>
+    <ul [class.bordered]="bordered" [class.mdc-list--avatar-list]="avatar" [class.mdc-list__dense]="dense" [class.mdc-list--two-line]="twoLine" class="mdc-list">
+      <ng-content></ng-content>
+    </ul>
+  ''',
+  styles: [
+    '''
+      .bordered {
+          padding-left: 0;
+          padding-right: 0;
+      }
 
-.bordered /deep/ mdc-list-item:not(:first-child) .bordered {
-  border-top: none !important;
-}
+      .bordered /deep/ mdc-list-item:not(:first-child) .bordered {
+        border-top: none !important;
+      }
   '''
-    ])
+  ],
+)
 class MdcListComponent implements AfterContentInit, OnDestroy {
+  List<MdcListItemComponent> _items;
+  StreamController<List<MdcListItemComponent>> _itemStream = StreamController();
   bool _bordered = false;
   StreamSubscription<Iterable<MdcListItemComponent>> _sub;
 
@@ -52,8 +56,12 @@ class MdcListComponent implements AfterContentInit, OnDestroy {
   @Input()
   bool twoLine = false;
 
+  List<MdcListItemComponent> get items => _items ?? [];
+
   @ContentChildren(MdcListItemComponent)
-  QueryList<MdcListItemComponent> items;
+  set items(List<MdcListItemComponent> value) {
+    _itemStream.add(_items = value);
+  }
 
   /// Display a border around all [items] in this list.
   bool get bordered => _bordered;
@@ -63,14 +71,14 @@ class MdcListComponent implements AfterContentInit, OnDestroy {
   }
 
   @Input()
-  void set bordered(bool value) {
+  set bordered(bool value) {
     _bordered = value;
     items?.forEach(_applyBorder);
   }
 
   @override
   ngAfterContentInit() {
-    _sub = items.changes.listen((it) {
+    _sub = _itemStream.stream.listen((it) {
       it.forEach(_applyBorder);
     });
 
@@ -81,27 +89,29 @@ class MdcListComponent implements AfterContentInit, OnDestroy {
 
   @override
   ngOnDestroy() {
+    _itemStream.close();
     _sub.cancel();
   }
 }
 
 /// An item within an [MdcListComponent].
 @Component(
-    selector: 'mdc-list-item',
-    directives: const [COMMON_DIRECTIVES, MdcRippleDirective],
-    template: '''
+  selector: 'mdc-list-item',
+  directives: [coreDirectives, MdcRippleDirective],
+  template: '''
 <a [class.bordered]="bordered" [href]="href" class="mdc-list-item" mdc-ripple>
     <ng-content></ng-content>
 </a>
 ''',
-    styles: const [
-      '''
+  styles: const [
+    '''
   .bordered {
     padding: 0 16px;
     border: 1px solid rgba(0, 0, 0, .12);
   }
   '''
-    ])
+  ],
+)
 class MdcListItemComponent {
   /// Typically, this is set by a parent [MdcListComponent].
   ///
@@ -115,13 +125,11 @@ class MdcListItemComponent {
 }
 
 @Component(
-    selector: 'mdc-list-item-detail',
-    templateUrl: 'list_detail.html',
-    directives: const [
-      COMMON_DIRECTIVES
-    ],
-    styles: const [
-      '''
+  selector: 'mdc-list-item-detail',
+  templateUrl: 'list_detail.html',
+  directives: [coreDirectives],
+  styles: [
+    '''
 :host {
     display: inline-flex;
 }
@@ -130,7 +138,8 @@ class MdcListItemComponent {
     margin-left: auto;
 }
   '''
-    ])
+  ],
+)
 class MdcListItemDetailComponent {
   /// Alternate text for when the [image] fails to load.
   @Input()
@@ -166,9 +175,7 @@ class MdcListItemDetailComponent {
 }
 
 /// MDC List contains an mdc-list-divider classes which can be used as full-width or inset subdivisions either within lists themselves, or event standalone between related groups of content.
-@Component(
-    selector: 'mdc-list-divider',
-    template: '''
+@Component(selector: 'mdc-list-divider', template: '''
 <hr [class.mdc-list-divider--inset]="inset" role="separator" class="mdc-list-divider">
 ''')
 class MdcListDividerComponent {

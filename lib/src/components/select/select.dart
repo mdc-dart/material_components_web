@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart'
-    hide NG_VALUE_ACCESSOR, ControlValueAccessor, TouchFunction, ChangeFunction;
+import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 import 'package:js/js.dart';
@@ -13,21 +12,21 @@ import 'package:js/js.dart';
 @Component(
   selector: 'mdc-select',
   templateUrl: 'select.html',
-  providers: const [
-    const Provider(
-      NG_VALUE_ACCESSOR,
+  providers: [
+    Provider(
+      ngValueAccessor,
       useExisting: MdcSelectComponent,
       multi: true,
     ),
   ],
-styles: const [
-  '''
+  styles: [
+    '''
   :host /deep/ .mdc-select__menu {
     top: inherit !important;
     left: inherit !important;
   }
   '''
-],
+  ],
 )
 class MdcSelectComponent
     implements AfterContentInit, ControlValueAccessor<String>, OnDestroy {
@@ -51,6 +50,11 @@ class MdcSelectComponent
   @Input()
   bool disabled = false;
 
+  @override
+  void onDisabledChanged(bool isDisabled) {
+    disabled = isDisabled;
+  }
+
   /// Gets or sets the value of the component.
   String get value =>
       _select?.selectedOptions[_select.selectedIndex]?.text ?? _value;
@@ -58,7 +62,7 @@ class MdcSelectComponent
   @Output()
   Stream<String> get valueChange => _valueChange.stream;
 
-  void set value(String v) {
+  set value(String v) {
     _value = v;
 
     if (_select != null) {

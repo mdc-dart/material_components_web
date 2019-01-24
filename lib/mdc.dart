@@ -2,7 +2,6 @@
 library mdc;
 
 import 'dart:html';
-import 'package:func/func.dart';
 import 'package:js/js.dart';
 
 @JS()
@@ -23,25 +22,25 @@ abstract class MDCCheckbox {
   external bool get checked;
 
   @JS()
-  external void set checked(bool value);
+  external set checked(bool value);
 
   @JS()
   external bool get disabled;
 
   @JS()
-  external void set disabled(bool value);
+  external set disabled(bool value);
 
   @JS()
   external bool get indeterminate;
 
   @JS()
-  external void set indeterminate(bool value);
+  external set indeterminate(bool value);
 
   @JS()
   external String get value;
 
   @JS()
-  external void set value(String v);
+  external set value(String v);
 }
 
 @JS('dialog.MDCDialog')
@@ -56,13 +55,13 @@ abstract class MDCDialog {
   external bool get open;
 
   @JS()
-  external void set open(bool value);
+  external set open(bool value);
 
   @JS()
   external EventTarget get lastFocusedTarget;
 
   @JS()
-  external void set lastFocusedTarget(EventTarget value);
+  external set lastFocusedTarget(EventTarget value);
 
   @JS()
   external void show();
@@ -83,7 +82,7 @@ external MDCDialogUtil get mdcDialogUtil;
 
 abstract class MDCDynamicDrawer {
   bool get open;
-  void set open(bool value);
+  set open(bool value);
 }
 
 @JS('drawer.MDCTemporaryDrawer')
@@ -98,7 +97,7 @@ abstract class MDCTemporaryDrawer implements MDCDynamicDrawer {
   external bool get open;
 
   @JS()
-  external void set open(bool value);
+  external set open(bool value);
 }
 
 @JS('drawer.MDCPersistentDrawer')
@@ -113,7 +112,7 @@ abstract class MDCPersistentDrawer implements MDCDynamicDrawer {
   external bool get open;
 
   @JS()
-  external void set open(bool value);
+  external set open(bool value);
 }
 
 @JS('iconToggle.MDCIconToggle')
@@ -125,13 +124,13 @@ abstract class MDCIconToggle {
   external bool get disabled;
 
   @JS()
-  external void set disabled(bool value);
+  external set disabled(bool value);
 
   @JS()
   external bool get on;
 
   @JS()
-  external void set on(bool value);
+  external set on(bool value);
 
   @JS()
   external void refreshToggleData();
@@ -149,7 +148,7 @@ abstract class MDCRipple {
   external bool get unbounded;
 
   @JS()
-  external void set unbounded(bool value);
+  external set unbounded(bool value);
 
   @JS()
   external static void attachTo(Element surface);
@@ -179,10 +178,10 @@ abstract class MDCSelect {
   external String get value;
 
   @JS()
-  external void set value(String v);
+  external set value(String v);
 
   @JS()
-  external void listen(String eventName, VoidFunc1<Event> callback);
+  external void listen(String eventName, void Function(Event) callback);
 }
 
 @JS('snackbar.MDCSnackbar')
@@ -201,7 +200,7 @@ abstract class MDCSnackbarOptions {
   external factory MDCSnackbarOptions(
       {String message,
       int timeout,
-      VoidFunc0 actionHandler,
+      void Function() actionHandler,
       String actionText,
       bool multiline,
       bool dismissOnAction,
@@ -211,43 +210,43 @@ abstract class MDCSnackbarOptions {
   external String get message;
 
   @JS()
-  external void set message(String v);
+  external set message(String v);
 
   @JS()
   external int get timeout;
 
   @JS()
-  external void set timeout(int v);
+  external set timeout(int v);
 
   @JS()
-  external VoidFunc0 get actionHandler;
+  external void Function() get actionHandler;
 
   @JS()
-  external void set actionHandler(VoidFunc0 v);
+  external set actionHandler(void Function() v);
 
   @JS()
   external String get actionText;
 
   @JS()
-  external void set actionText(String v);
+  external set actionText(String v);
 
   @JS()
   external bool get multiline;
 
   @JS()
-  external void set multiline(bool v);
+  external set multiline(bool v);
 
   @JS()
   external bool get dismissOnAction;
 
   @JS()
-  external void set dismissOnAction(bool v);
+  external set dismissOnAction(bool v);
 
   @JS()
   external bool get actionOnBottom;
 
   @JS()
-  external void set actionOnBottom(bool v);
+  external set actionOnBottom(bool v);
 }
 
 @JS('textfield.MDCTextfield')

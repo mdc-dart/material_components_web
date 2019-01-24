@@ -1,33 +1,27 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart'
-    hide
-    NG_VALUE_ACCESSOR,
-    ChangeFunction,
-    ControlValueAccessor,
-    DefaultValueAccessor,
-    TouchFunction;
+import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 import '../ripple/ripple.dart';
 
 /// MDC Icon Toggle provides a Material Design icon toggle button. It is fully accessible, and is designed to work with any icon set.
 @Component(
-    selector: 'mdc-icon-toggle',
-    templateUrl: 'icon_toggle.html',
-    directives: const [
-      MdcRippleDirective
-    ],
-    providers: const [
-      const Provider(
-        NG_VALUE_ACCESSOR,
-        useExisting: MdcIconToggleComponent,
-        multi: true,
-      )
-    ])
+  selector: 'mdc-icon-toggle',
+  templateUrl: 'icon_toggle.html',
+  directives: const [MdcRippleDirective],
+  providers: [
+    Provider(
+      ngValueAccessor,
+      useExisting: MdcIconToggleComponent,
+      multi: true,
+    )
+  ],
+)
 class MdcIconToggleComponent
     implements ControlValueAccessor<bool>, AfterViewInit, OnDestroy {
-  final ElementRef _elementRef;
+  /// The underlying element.
+  final HtmlElement element;
 
   ChangeFunction<bool> _changeListener;
   String _iconSet;
@@ -47,7 +41,7 @@ class MdcIconToggleComponent
   @Input()
   bool primary;
 
-  MdcIconToggleComponent(this._elementRef);
+  MdcIconToggleComponent(this.element);
 
   /// The icon to be shown when the toggle is 'on'.
   String get onIcon => _onIcon;
@@ -72,6 +66,11 @@ class MdcIconToggleComponent
   /// The currently-visible icon.
   String get icon => on ? onIcon : offIcon;
 
+  @override
+  void onDisabledChanged(bool isDisabled) {
+    disabled = isDisabled;
+  }
+
   /// The currently-visible label.
   String get label => on ? onLabel : offLabel;
 
@@ -81,60 +80,61 @@ class MdcIconToggleComponent
   bool get on => _on;
 
   @Input()
-  void set onIcon(String value) {
+  set onIcon(String value) {
     _onIcon = value;
     _update();
   }
 
   @Input()
-  void set onLabel(String value) {
+  set onLabel(String value) {
     _onLabel = value;
     _update();
   }
 
   @Input()
-  void set offIcon(String value) {
+  set offIcon(String value) {
     _offIcon = value;
     _update();
   }
 
   @Input()
-  void set offLabel(String value) {
+  set offLabel(String value) {
     _offLabel = value;
     _update();
   }
 
   @Input()
-  void set iconSet(String value) {
+  set iconSet(String value) {
     _iconSet = value;
     _update();
   }
 
   @Input()
-  void set disabled(bool value) {
+  set disabled(bool value) {
     _disabled = value == true;
   }
 
   @Input()
-  void set on(bool value) {
+  set on(bool value) {
     //_onChange.add(_on = value == true);
     if (_toggle == null) {
       _on = value == true;
       if (_changeListener != null) _changeListener(_on);
-    } else _toggle.on = value == true;
+    } else
+      _toggle.on = value == true;
   }
 
   void _handleEvent(CustomEvent e) {
-    _onChange.add(_on = e.detail['isOn']);
+    _onChange.add(_on = e.detail['isOn'] as bool);
     if (_touchListener != null) _touchListener();
     if (_changeListener != null) _changeListener(_on);
   }
 
   MDCIconToggle _init() {
-    Element $el = _elementRef.nativeElement;
-    var $i = $el.querySelector('i');
-    var t = new MDCIconToggle($i)..on = _on == true;
-    _sub = $i.on['MDCIconToggle:change'].listen(_handleEvent);
+    var i = element.querySelector('i');
+    var t = new MDCIconToggle(i)..on = _on == true;
+    _sub =
+        i.on['MDCIconToggle:change'].cast<CustomEvent>().listen(_handleEvent);
     return t;
   }
 

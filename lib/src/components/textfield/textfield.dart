@@ -1,28 +1,21 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart'
-    hide
-        NG_VALUE_ACCESSOR,
-        ChangeFunction,
-        ControlValueAccessor,
-        DefaultValueAccessor,
-        TouchFunction;
+import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 
 @Component(
-    selector: 'mdc-textfield',
-    templateUrl: 'textfield.html',
-    directives: const [
-      COMMON_DIRECTIVES
-    ],
-    providers: const [
-      const Provider(
-        NG_VALUE_ACCESSOR,
-        useExisting: MdcTextfieldComponent,
-        multi: true,
-      ),
-    ])
+  selector: 'mdc-textfield',
+  templateUrl: 'textfield.html',
+  directives: const [coreDirectives],
+  providers: [
+    Provider(
+      ngValueAccessor,
+      useExisting: MdcTextfieldComponent,
+      multi: true,
+    ),
+  ],
+)
 class MdcTextfieldComponent
     implements ControlValueAccessor<String>, AfterViewInit, OnDestroy {
   final StreamController<KeyboardEvent> _onKeyPress =
@@ -48,6 +41,11 @@ class MdcTextfieldComponent
   @Input()
   bool disabled = false;
 
+  @override
+  void onDisabledChanged(bool isDisabled) {
+    disabled = isDisabled;
+  }
+
   /// If `true` (default: `false`), then the textfield will fill up the entire width of its container.
   @Input()
   bool fullWidth = false;
@@ -65,7 +63,7 @@ class MdcTextfieldComponent
   bool invalid;
 
   @ViewChild('input')
-  ElementRef input;
+  TextInputElement input;
 
   /// The minimum length of text in this component.
   @Input()
@@ -92,17 +90,17 @@ class MdcTextfieldComponent
   bool required = false;
 
   @ViewChild('root')
-  ElementRef root;
+  HtmlElement root;
 
   /// The number of rows to show in a [multiLine] textfield.
   @Input()
   int rows;
 
   @ViewChild('textarea')
-  ElementRef textarea;
+  TextAreaElement textarea;
 
   @ViewChild('textareaRoot')
-  ElementRef textareaRoot;
+  HtmlElement textareaRoot;
 
   /// The `type` attribute to be placed on the underlying `input` element.
   @Input()
@@ -113,7 +111,9 @@ class MdcTextfieldComponent
   Stream<KeyboardEvent> get onKeyPress => _onKeyPress.stream;
 
   /// Whether the textfield is valid.
-  bool get valid => (input ?? textarea)?.nativeElement?.validity?.valid == true;
+  bool get valid {
+    return input?.validity?.valid ?? textarea?.validity?.valid ?? false;
+  }
 
   /// The text currently displayed within the text field.
   String get value => _value;
@@ -123,10 +123,9 @@ class MdcTextfieldComponent
   Stream<String> get valueChange => _valueChange.stream;
 
   @Input()
-  void set value(String v) {
+  set value(String v) {
     _setValueDirect(v);
     _valueChange.add(_value);
-    DefaultValueAccessor a;
   }
 
   void _setValueDirect(String v) {
@@ -134,18 +133,31 @@ class MdcTextfieldComponent
     _value = v ??= '';
 
     if (multiLine != true)
-      input?.nativeElement?.value = v;
+      input?.value = v;
     else
-      textarea?.nativeElement?.value = v;
+      textarea?.value = v;
   }
 
-  void _handleInput(e) {
+  void _handleInput(Event e) {
+    var target = e.target;
     if (disabled == true) return;
-    _valueChange.add(_value = e.target.value);
-    if (_changeListener != null) _changeListener(_value);
 
-    if (!e.target.validity.valid) {
-      helpText ??= e.target.validationMessage;
+    if (target is InputElement) {
+      _valueChange.add(_value = target.value);
+
+      if (_changeListener != null) _changeListener(_value);
+
+      if (!target.validity.valid) {
+        helpText ??= target.validationMessage;
+      }
+    } else if (target is TextAreaElement) {
+      _valueChange.add(_value = target.value);
+
+      if (_changeListener != null) _changeListener(_value);
+
+      if (!target.validity.valid) {
+        helpText ??= target.validationMessage;
+      }
     }
   }
 
@@ -155,31 +167,41 @@ class MdcTextfieldComponent
     _subInput?.cancel();
     _subKeyPress?.cancel();
 
-    ElementRef targetRoot;
-    ElementRef targetInput;
+    Element targetRoot;
+    String validationMessage;
+    Stream<Event> onBlur, onInput;
+    Stream<KeyboardEvent> onKeyPress;
+    bool isValid;
 
     if (multiLine != true) {
       targetRoot = root;
-      targetInput = input;
+      input.value = _value ?? '';
+      validationMessage = input.validationMessage;
+      onBlur = input.onBlur;
+      onKeyPress = input.onKeyPress;
+      onInput = input.onInput;
+      isValid = input.validity.valid;
     } else {
       targetRoot = textareaRoot;
-      targetInput = textarea;
+      textarea.value = _value ?? '';
+      validationMessage = textarea.validationMessage;
+      onBlur = textarea.onBlur;
+      onKeyPress = textarea.onKeyPress;
+      onInput = textarea.onInput;
+      isValid = textarea.validity.valid;
     }
 
-    var $input = targetInput.nativeElement;
-    $input.value = _value ??= '';
-
-    if (!$input.validity.valid) {
-      helpText ??= $input.validationMessage;
+    if (!isValid) {
+      helpText ??= validationMessage;
     }
 
-    _subBlur = $input.onBlur.listen((_) {
+    _subBlur = onBlur.listen((_) {
       if (_touchListener != null) _touchListener();
     });
-    _subInput = $input.onInput.listen(_handleInput);
-    _subKeyPress = $input.onKeyPress.listen(_onKeyPress.add);
+    _subInput = onInput.listen(_handleInput);
+    _subKeyPress = onKeyPress.listen(_onKeyPress.add);
 
-    MDCTextfield.attachTo(targetRoot.nativeElement);
+    MDCTextfield.attachTo(targetRoot);
   }
 
   @override

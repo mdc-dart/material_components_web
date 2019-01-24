@@ -1,12 +1,6 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular/angular.dart'
-    hide
-    NG_VALUE_ACCESSOR,
-    ChangeFunction,
-    ControlValueAccessor,
-    DefaultValueAccessor,
-    TouchFunction;
+import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import '../../../mdc.dart';
 
@@ -15,18 +9,13 @@ import '../../../mdc.dart';
 /// It works without JavaScript with basic functionality for all states.
 /// If you use the JavaScript object for a checkbox, it will add more intricate animation effects when switching between states.
 @Component(
-    selector: 'mdc-checkbox',
-    templateUrl: 'checkbox.html',
-    providers: const [
-      const Provider(
-        NG_VALUE_ACCESSOR,
-        useExisting: MdcCheckboxComponent,
-        multi: true,
-      )
-    ],
-    directives: const [
-      COMMON_DIRECTIVES
-    ])
+  selector: 'mdc-checkbox',
+  templateUrl: 'checkbox.html',
+  providers: [
+    Provider(ngValueAccessor, useExisting: MdcCheckboxComponent, multi: true)
+  ],
+  directives: [coreDirectives],
+)
 class MdcCheckboxComponent
     implements ControlValueAccessor<bool>, AfterViewInit, OnDestroy {
   final StreamController<bool> _onChange =
@@ -41,17 +30,22 @@ class MdcCheckboxComponent
   bool accent, primary;
 
   @ViewChild('checkbox')
-  ElementRef checkbox;
+  HtmlElement checkbox;
 
   /// Sets a label to be positioned next to this checkbox.
   @Input()
   String label;
 
   @ViewChild('root')
-  ElementRef root;
+  HtmlElement root;
 
   @Output()
   Stream<bool> get onChange => _onChange.stream;
+
+  @override
+  void onDisabledChanged(bool isDisabled) {
+    disabled = isDisabled;
+  }
 
   /// Returns `true` if the checkbox is checked.
   bool get checked => _checked;
@@ -63,7 +57,7 @@ class MdcCheckboxComponent
   bool get indeterminate => _indeterminate;
 
   @Input()
-  void set checked(bool value) {
+  set checked(bool value) {
     if (_disabled == true) return;
     _checked = value == true;
     _checkbox?.checked = _checked;
@@ -71,12 +65,12 @@ class MdcCheckboxComponent
   }
 
   @Input()
-  void set disabled(bool value) {
+  set disabled(bool value) {
     _checkbox.disabled = _disabled = value == true;
   }
 
   @Input()
-  void set indeterminate(bool value) {
+  set indeterminate(bool value) {
     _checkbox.indeterminate = _indeterminate = value == true;
   }
 
@@ -84,8 +78,8 @@ class MdcCheckboxComponent
   ngAfterViewInit() {
     _subBlur?.cancel();
     _subInput?.cancel();
-    _checkbox = new MDCCheckbox(root.nativeElement);
-    CheckboxInputElement $checkbox = checkbox.nativeElement;
+    _checkbox = new MDCCheckbox(root);
+    var $checkbox = checkbox as CheckboxInputElement;
 
     _subBlur = $checkbox.onBlur.listen(_onTouched.add);
     _subInput = $checkbox.onChange.listen((_) {

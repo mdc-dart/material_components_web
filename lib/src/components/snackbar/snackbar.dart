@@ -11,7 +11,7 @@ class MdcSnackbarComponent implements AfterContentInit, OnDestroy {
   MDCSnackbar _snackbar;
 
   @ViewChild('surface')
-  ElementRef surface;
+  HtmlElement surface;
 
   /// Whether to show the action below the multiple lines of text.
   @Input()
@@ -47,7 +47,7 @@ class MdcSnackbarComponent implements AfterContentInit, OnDestroy {
 
   @override
   ngAfterContentInit() {
-    _snackbar = new MDCSnackbar(surface.nativeElement);
+    _snackbar = new MDCSnackbar(surface);
   }
 
   @override

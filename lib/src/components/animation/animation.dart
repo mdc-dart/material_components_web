@@ -1,10 +1,9 @@
-import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
 
 @Directive(selector: '[mdc-animation]')
 class MdcAnimationDirective implements OnInit, AfterViewInit {
-  final ElementRef _elementRef;
+  final HtmlElement element;
 
   String _animation = 'standard-curve';
 
@@ -14,9 +13,7 @@ class MdcAnimationDirective implements OnInit, AfterViewInit {
   @Input()
   int duration = 250;
 
-  MdcAnimationDirective(this._elementRef);
-
-  Element get _$el => _elementRef.nativeElement;
+  MdcAnimationDirective(this.element);
 
   /// The [MdcAnimation] to display.
   ///
@@ -24,9 +21,9 @@ class MdcAnimationDirective implements OnInit, AfterViewInit {
   String get animation => _animation;
 
   @Input('mdc-animation')
-  void set animation(String value) {
+  set animation(String value) {
     if (value != null) {
-      _$el.classes
+      element.classes
         ..remove('mdc-animation-$_animation')
         ..add('mdc-animation-$value');
       _animation = value;
@@ -45,11 +42,11 @@ class MdcAnimationDirective implements OnInit, AfterViewInit {
 
   /// Runs the animation.
   void fadeIn() {
-    _$el.style.opacity = '1';
+    element.style.opacity = '1';
   }
 
   /// Runs the animation.
   void fadeOut() {
-    _$el.style.opacity = '0';
+    element.style.opacity = '0';
   }
 }

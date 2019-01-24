@@ -1,2 +1,8 @@
+include: package:pedantic/analysis_options.yaml
 analyzer:
-  strong-mode: true
+  strong-mode:
+    implicit-casts: false
+  plugins:
+    - angular
+  errors:
+    uri_has_not_been_generated: ignore

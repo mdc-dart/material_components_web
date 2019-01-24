@@ -6,28 +6,25 @@ import '../../../mdc.dart';
 /// Displays a drawer to the side of regular content.
 ///
 /// This drawer can be toggled on/off to open/close it.
-@Component(
-    selector: 'mdc-drawer',
-    templateUrl: 'drawer.html',
-    directives: const [COMMON_DIRECTIVES],
-    styles: const [
-      '''
+@Component(selector: 'mdc-drawer', templateUrl: 'drawer.html', directives: [
+  coreDirectives
+], styles: [
+  '''
 .header-content {
     background-color: var(--mdc-theme-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
   '''
-    ])
+])
 class MdcDrawerComponent implements AfterViewInit, OnDestroy {
   final StreamController<bool> _openChange = new StreamController<bool>();
 
-  bool _open = false,
-      _persistent = false;
+  bool _open = false, _persistent = false;
   MDCDynamicDrawer _drawer;
   StreamSubscription<Event> _onOpen, _onClose;
 
   @ViewChild('aside')
-  ElementRef aside;
+  HtmlElement aside;
 
   /// Show a header in the drawer, often used for user selection.
   @Input()
@@ -56,13 +53,13 @@ class MdcDrawerComponent implements AfterViewInit, OnDestroy {
   Stream<bool> get openChange => _openChange.stream;
 
   @Input()
-  void set open(bool value) {
+  set open(bool value) {
     _open = value == true;
     _drawer?.open = _open;
   }
 
   @Input()
-  void set persistent(bool value) {
+  set persistent(bool value) {
     _persistent = value == true;
 
     if (_drawer != null) {
@@ -74,16 +71,15 @@ class MdcDrawerComponent implements AfterViewInit, OnDestroy {
 
   @override
   ngAfterViewInit() {
-    Element $aside = aside.nativeElement;
-    _drawer =
-    persistent ? new MDCPersistentDrawer($aside) : new MDCTemporaryDrawer(
-        $aside);
+    _drawer = persistent
+        ? new MDCPersistentDrawer(aside)
+        : new MDCTemporaryDrawer(aside);
 
-    _onOpen = $aside.on['MDCPersistentDrawer:open'].listen((_) {
+    _onOpen = aside.on['MDCPersistentDrawer:open'].listen((_) {
       _openChange.add(_open = true);
     });
 
-    _onClose = $aside.on['MDCPersistentDrawer:close'].listen((_) {
+    _onClose = aside.on['MDCPersistentDrawer:close'].listen((_) {
       _openChange.add(_open = true);
     });
   }

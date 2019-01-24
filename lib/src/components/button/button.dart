@@ -5,15 +5,11 @@ import '../elevation/elevation.dart';
 import '../ripple/ripple.dart';
 
 @Component(
-    selector: 'mdc-button',
-    templateUrl: 'button.html',
-    directives: const [
-      COMMON_DIRECTIVES,
-      MdcElevationDirective,
-      MdcRippleDirective
-    ],
-styles: const [
-  '''
+  selector: 'mdc-button',
+  templateUrl: 'button.html',
+  directives: [coreDirectives, MdcElevationDirective, MdcRippleDirective],
+  styles: [
+    '''
   .mdc-button.flex {
     display: flex;
     align-items: center;
@@ -23,7 +19,8 @@ styles: const [
     display: flex;
   }
   '''
-])
+  ],
+)
 class MdcButtonComponent implements OnDestroy {
   final StreamController<Event> _click = new StreamController<Event>();
 

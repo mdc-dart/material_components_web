@@ -3,34 +3,34 @@
         Material Design Components
     </div>
     <mdc-list class="mdc-temporary-drawer__content">
-        <mdc-list-item [routerLink]="['Button']">
+        <mdc-list-item routerLink="/button">
             <mdc-list-item-detail icon="control_point"></mdc-list-item-detail>
             Button
         </mdc-list-item>
-        <mdc-list-item [routerLink]="['Dialog']">
+        <mdc-list-item routerLink="/dialog">
             <mdc-list-item-detail icon="filter_frames"></mdc-list-item-detail>
             Dialog
         </mdc-list-item>
-        <mdc-list-item [routerLink]="['Fab']">
+        <mdc-list-item routerLink="/fab">
             <mdc-list-item-detail icon="control_point_duplicate"></mdc-list-item-detail>
             Floating Action Button
         </mdc-list-item>
-        <mdc-list-item [routerLink]="['IconToggle']">
+        <mdc-list-item routerLink="/icon-toggle">
             <mdc-list-item-detail icon="radio_button_checked"></mdc-list-item-detail>
             Icon Toggle
         </mdc-list-item>
-        <mdc-list-item [routerLink]="['List']">
+        <mdc-list-item routerLink="/list">
             <mdc-list-item-detail icon="list"></mdc-list-item-detail>
             List
         </mdc-list-item>
-        <mdc-list-item [routerLink]="['Textfield']">
+        <mdc-list-item routerLink="/textfield">
             <mdc-list-item-detail icon="input"></mdc-list-item-detail>
             Text Field
         </mdc-list-item>
     </mdc-list>
 </mdc-drawer>
 
-<mdc-toolbar [fixed]="true">
+<mdc-toolbar fixed>
     <mdc-toolbar-section [alignStart]="true">
         <mdc-icon (click)="drawer.show()" icon="menu" menuIcon></mdc-icon>
         <div class="mdc-toolbar__title">{{title}}</div>
@@ -38,5 +38,6 @@
 </mdc-toolbar>
 
 <main class="mdc-toolbar-fixed-adjust" style="padding: 1em;">
-    <router-outlet (activate)="drawer.close()"></router-outlet>
+    <router-outlet [routes]="Routes.all"></router-outlet>
+    <!-- <router-outlet (activate)="drawer.close()"></router-outlet> -->
 </main>

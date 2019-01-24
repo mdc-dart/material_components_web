@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:angular/angular.dart';
 import '../../../mdc.dart';
 
@@ -6,12 +7,13 @@ import '../../../mdc.dart';
 /// It is designed to be efficient, uninvasive, and usable without adding any extra DOM to your elements.
 @Directive(selector: '[mdc-ripple]')
 class MdcRippleDirective implements OnInit {
-  final ElementRef _elementRef;
+  /// The underlying element.
+  final HtmlElement element;
 
-  MdcRippleDirective(this._elementRef);
+  MdcRippleDirective(this.element);
 
   @override
   ngOnInit() {;
-    MDCRipple.attachTo(_elementRef.nativeElement);
+    MDCRipple.attachTo(element);
   }
 }

@@ -1,15 +1,10 @@
-@Tags(const ['aot'])
-@TestOn('browser')
-// ignore: unused_import
-import 'dart:html';
-
 import 'package:angular_test/angular_test.dart';
-import 'package:angular/angular.dart';
 import 'package:material_components_web/material_components_web.dart';
 import 'package:test/test.dart';
+import 'fab_test.template.dart' as ng;
 
-@AngularEntrypoint()
 main() {
+  ng.initReflector();
   tearDown(disposeAnyRunningTest);
 
   test('setting mini changes class', () async {

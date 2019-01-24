@@ -11,10 +11,13 @@ const List<Type> mdcDialogDirectives = const [
 @Component(
     selector: 'mdc-dialog',
     templateUrl: 'dialog.html',
-    directives: const [COMMON_DIRECTIVES])
+    directives: [coreDirectives])
 class MdcDialogComponent implements AfterContentInit, OnDestroy {
-  final ElementRef _elementRef;
-  final NgZone _zone;
+  /// The underlying element.
+  final HtmlElement element;
+
+  /// The execution zone.
+  final NgZone zone;
 
   MDCDialog _dialog;
   bool _open = false;
@@ -39,7 +42,7 @@ class MdcDialogComponent implements AfterContentInit, OnDestroy {
   @Input()
   bool scrollable = false;
 
-  MdcDialogComponent(this._elementRef, this._zone);
+  MdcDialogComponent(this.element, this.zone);
 
   /// Fires when the dialog is accepted. Typically only works when [showDefaultFooter] is `true`.
   @Output()
@@ -57,7 +60,7 @@ class MdcDialogComponent implements AfterContentInit, OnDestroy {
   Stream<bool> get openChange => _openChange.stream;
 
   @Input()
-  void set open(bool value) {
+  set open(bool value) {
     if (_dialog != null) {
       _openChange.add(_dialog.open = value == true);
     } else
@@ -66,16 +69,15 @@ class MdcDialogComponent implements AfterContentInit, OnDestroy {
 
   @override
   ngAfterContentInit() {
-    Element $el = _elementRef.nativeElement;
-    var $surface = $el.querySelector('.mdc-dialog');
-    _dialog = new MDCDialog($surface);
+    var surface = element.querySelector('.mdc-dialog');
+    _dialog = new MDCDialog(surface);
 
-    $surface
+    surface
       ..on['MDCDialog:accept'].listen((_) {
-        _zone.run(() => _accept.add(null));
+        zone.run(() => _accept.add(null));
       })
       ..on['MDCDialog:cancel'].listen((_) {
-        _zone.run(() => _cancel.add(null));
+        zone.run(() => _cancel.add(null));
       });
 
     if (_open) _dialog.show();
@@ -92,7 +94,7 @@ class MdcDialogComponent implements AfterContentInit, OnDestroy {
   /// Opens the dialog. You can optionally provide a [focusTarget].
   void show([EventTarget focusTarget]) {
     if (_dialog != null) {
-      _dialog.lastFocusedTarget = focusTarget ?? _elementRef.nativeElement;
+      _dialog.lastFocusedTarget = focusTarget ?? element;
       _dialog.show();
       _openChange.add(_dialog.open);
     }

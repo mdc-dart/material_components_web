@@ -47,7 +47,7 @@ class MdcFabComponent implements OnDestroy {
   bool get disabled => _disabled == true;
 
   @Input()
-  void set disabled(bool value) {
+  set disabled(bool value) {
     _disabled = value == true;
   }
 

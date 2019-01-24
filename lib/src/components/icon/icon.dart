@@ -15,7 +15,9 @@ import 'package:angular/angular.dart';
 @Component(selector: 'mdc-icon', templateUrl: 'icon.html')
 class MdcIconComponent {
   String _iconSet;
-  final ElementRef _elementRef;
+
+  /// The underlying element.
+  final HtmlElement element;
 
   /// The name of the icon to use. If you are using `material-icons`, then
   /// this corresponds to a font ligature.
@@ -26,16 +28,15 @@ class MdcIconComponent {
   @Input()
   bool menuIcon;
 
-  MdcIconComponent(this._elementRef);
+  MdcIconComponent(this.element);
 
   /// The icon set to use for this element, which defaults to `'material-icons'`.
   String get iconSet =>
       _iconSet?.isNotEmpty == true ? _iconSet : 'material-icons';
 
   @Input()
-  void set iconSet(String value) {
+  set iconSet(String value) {
     _iconSet = value;
-    var $el = _elementRef.nativeElement as Element;
-    $el.attributes['class'] = this.iconSet;
+    element.attributes['class'] = this.iconSet;
   }
 }
